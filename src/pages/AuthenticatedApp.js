@@ -1,9 +1,13 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
+import Dashboard from "./Dashboard";
 
 const AuthenticatedApp = ({ children }) => {
   return (
     <>
-      <div>Authenticated</div>
+      <Switch>
+        <Route path="/" exact component={Dashboard} />
+      </Switch>
     </>
   );
 };
