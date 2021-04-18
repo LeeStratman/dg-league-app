@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Dashboard from "./Dashboard";
+import Dashboard from "./authenticated/Dashboard";
 
 const AuthenticatedApp = () => {
   return (
