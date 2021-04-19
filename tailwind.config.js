@@ -13,6 +13,9 @@ module.exports = {
         },
         secondary: "#C1CD23",
       },
+      outline: {
+        primary: "2px solid #1ED3EA",
+      },
     },
   },
   variants: {

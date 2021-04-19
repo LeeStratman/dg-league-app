@@ -1,12 +1,18 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./unauthenticated/Home";
+import Signup from "./unauthenticated/Signup";
+import Header from "../components/Header";
 
 const UnauthenticatedApp = () => {
   return (
-    <Switch>
-      <Route path="/" exact component={Home} />
-    </Switch>
+    <>
+      <Header />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/signup" exact component={Signup} />
+      </Switch>
+    </>
   );
 };
 
