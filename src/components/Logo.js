@@ -1,7 +1,7 @@
 import React from "react";
 
-const Logo = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225 50">
+const Logo = ({ size = 125 }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225 50" width={size}>
     <ellipse
       transform="rotate(-2.333 144.708 4.83)"
       fill="#C1CD23"

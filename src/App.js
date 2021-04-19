@@ -6,7 +6,7 @@ const UnauthenticatedApp = React.lazy(() =>
   import("./pages/UnauthenticatedApp")
 );
 
-const App = ({ isLoggedIn = true }) => {
+const App = ({ isLoggedIn = false }) => {
   return (
     <React.Suspense fallback={<div>Loading...</div>}>
       {isLoggedIn ? <AuthenticatedApp /> : <UnauthenticatedApp />}
