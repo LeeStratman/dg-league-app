@@ -10,11 +10,9 @@ export const loginRequest = (credentials) => async (dispatch, getState) => {
   try {
     const response = await axios.post(`${url}/auth/signin`, credentials);
 
-    const token = response.data;
-
-    if (response.status === 201) {
+    if (response.status === 200) {
       dispatch(loginSuccess());
-      saveToken(token);
+      saveToken(response.data.token);
     } else {
       dispatch(loginFailure("Unable to login"));
     }
@@ -22,6 +20,45 @@ export const loginRequest = (credentials) => async (dispatch, getState) => {
     console.log(err);
   }
 };
+
+export const authorizeRequest = () => async (dispatch, getState) => {
+  dispatch(loginInProgress());
+
+  const token = getTokenFromLocalStorage();
+
+  if (!token) {
+    dispatch(loginFailure("User not logged in!"));
+  }
+
+  try {
+    const response = await axios.post(
+      `${url}/auth`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.status === 200) {
+      dispatch(loginSuccess());
+    } else {
+      dispatch(loginFailure("User not logged in!"));
+      removeTokenFromLocalStorage();
+    }
+  } catch (err) {
+    dispatch(loginFailure("Unable to log in."));
+  }
+};
+
+export function removeTokenFromLocalStorage() {
+  localStorage.removeItem("dgleague");
+}
+
+export function getTokenFromLocalStorage() {
+  return JSON.parse(localStorage.getItem("dgleague"));
+}
 
 const saveToken = (token) => {
   return window.localStorage.setItem("dgleague", JSON.stringify(token));
