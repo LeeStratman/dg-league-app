@@ -16,6 +16,7 @@ import {
 } from "@heroicons/react/outline";
 import Logo from "../components/Logo";
 import Avatar from "../components/Avatar";
+import Courses from "./authenticated/Courses";
 
 const AuthenticatedApp = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -235,36 +236,26 @@ const AuthenticatedApp = () => {
         <div className="flex flex-col w-0 flex-1 overflow-hidden">
           <div className="md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
             <button
-              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-400"
               onClick={() => setSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>
               <MenuIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
-            <div className="py-6">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 className="text-2xl font-semibold text-gray-900">
-                  Dashboard
-                </h1>
-              </div>
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                <Switch>
-                  <Route path="/" exact component={Dashboard} />
-                  <Route path="/leagues" exact component={Dashboard} />
-                  <Route path="/courses" exact component={Dashboard} />
-                  <Route path="/schedule" exact component={Dashboard} />
-                  <Route path="/scorecards" exact component={Dashboard} />
-                  <Route path="/admin" exact component={Dashboard} />
-                  <Route path="/settings" exact component={Dashboard} />
-                  <Route path="*">
-                    <Redirect to="/" />
-                  </Route>
-                </Switch>
-              </div>
-            </div>
-          </main>
+
+          <Switch>
+            <Route path="/" exact component={Dashboard} />
+            <Route path="/leagues" exact component={Dashboard} />
+            <Route path="/courses" component={Courses} />
+            <Route path="/schedule" exact component={Dashboard} />
+            <Route path="/scorecards" exact component={Dashboard} />
+            <Route path="/admin" exact component={Dashboard} />
+            <Route path="/settings" exact component={Dashboard} />
+            <Route path="*">
+              <Redirect to="/" />
+            </Route>
+          </Switch>
         </div>
       </div>
     </>
