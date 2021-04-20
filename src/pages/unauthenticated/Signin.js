@@ -2,8 +2,9 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { loginRequest } from "../../redux/auth/thunks";
 import Logo from "../../components/Logo";
+import Error from "../../components/alerts/error";
 
-const Signin = ({ loginRequest }) => {
+const Signin = ({ loginRequest, error }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -66,6 +67,7 @@ const Signin = ({ loginRequest }) => {
                 />
               </div>
             </div>
+            {error && error.error && <Error message={error.message} />}
 
             <div>
               <button type="submit" className="w-full btn_primary">
@@ -79,8 +81,12 @@ const Signin = ({ loginRequest }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  error: state.errors.login,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   loginRequest: (user) => dispatch(loginRequest(user)),
 });
 
-export default connect(null, mapDispatchToProps)(Signin);
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

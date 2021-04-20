@@ -1,6 +1,6 @@
 import axios from "axios";
-
 import { loginInProgress, loginSuccess, loginFailure } from "./actions";
+import { getError } from "../../utils/error";
 
 const url = "http://localhost:5000/api";
 
@@ -14,20 +14,18 @@ export const loginRequest = (credentials) => async (dispatch, getState) => {
       dispatch(loginSuccess());
       saveToken(response.data.token);
     } else {
-      dispatch(loginFailure("Unable to login"));
+      dispatch(loginFailure(response.data.error));
     }
   } catch (err) {
-    console.log(err);
+    dispatch(loginFailure(getError(err)));
   }
 };
 
 export const authorizeRequest = () => async (dispatch, getState) => {
-  dispatch(loginInProgress());
-
   const token = getTokenFromLocalStorage();
 
   if (!token) {
-    dispatch(loginFailure("User not logged in!"));
+    return;
   }
 
   try {
@@ -44,11 +42,11 @@ export const authorizeRequest = () => async (dispatch, getState) => {
     if (response.status === 200) {
       dispatch(loginSuccess());
     } else {
-      dispatch(loginFailure("User not logged in!"));
+      dispatch(loginFailure(response.data.error));
       removeTokenFromLocalStorage();
     }
   } catch (err) {
-    dispatch(loginFailure("Unable to log in."));
+    dispatch(loginFailure(getError(err)));
   }
 };
 
