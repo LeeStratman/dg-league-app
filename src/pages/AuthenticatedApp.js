@@ -19,6 +19,7 @@ import {
 import Logo from "../components/Logo";
 import Avatar from "../components/Avatar";
 import Courses from "./authenticated/Courses";
+import Leagues from "./authenticated/Leagues";
 
 const AuthenticatedApp = ({ logout }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -277,11 +278,11 @@ const AuthenticatedApp = ({ logout }) => {
 
           <Switch>
             <Route path="/" exact component={Dashboard} />
-            <Route path="/leagues" exact component={Dashboard} />
+            <Route path="/leagues" component={Leagues} />
             <Route path="/courses" component={Courses} />
-            <Route path="/schedule" exact component={Dashboard} />
-            <Route path="/scorecards" exact component={Dashboard} />
-            <Route path="/admin" exact component={Dashboard} />
+            <Route path="/schedule" component={Dashboard} />
+            <Route path="/scorecards" component={Dashboard} />
+            <Route path="/admin" component={Dashboard} />
             <Route path="/settings" exact component={Dashboard} />
             <Route path="*">
               <Redirect to="/" />

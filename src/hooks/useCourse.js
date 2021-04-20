@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import axios, { CancelToken } from "axios";
 
-const useCourse = ({ courseId }) => {
+const useCourse = (courseId) => {
   return useQuery(
     ["course", courseId],
     () => {
