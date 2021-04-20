@@ -21,6 +21,23 @@ export const loginRequest = (credentials) => async (dispatch, getState) => {
   }
 };
 
+export const signupRequest = (user) => async (dispatch, getState) => {
+  dispatch(loginInProgress());
+
+  try {
+    const response = await axios.post(`${url}/auth/signup`, user);
+
+    if (response.status === 201) {
+      dispatch(loginSuccess());
+      saveToken(response.data.token);
+    } else {
+      dispatch(loginFailure(response.data.error));
+    }
+  } catch (err) {
+    dispatch(loginFailure(getError(err)));
+  }
+};
+
 export const authorizeRequest = () => async (dispatch, getState) => {
   const token = getTokenFromLocalStorage();
 

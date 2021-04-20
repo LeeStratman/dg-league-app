@@ -1,6 +1,13 @@
 import Logo from "../../components/Logo";
+import { connect } from "react-redux";
+import { signupRequest } from "../../redux/auth/thunks";
+import { useState } from "react";
 
-export default function Signup() {
+const Signup = ({ signup }) => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -14,7 +21,13 @@ export default function Signup() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" action="#" method="POST">
+          <form
+            className="space-y-6"
+            onSubmit={(e) => {
+              e.preventDefault();
+              signup({ firstName, lastName, email, password });
+            }}
+          >
             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
               <div className="sm:col-span-3">
                 <label
@@ -25,6 +38,8 @@ export default function Signup() {
                 </label>
                 <div className="mt-1">
                   <input
+                    onChange={(e) => setFirstName(e.target.value)}
+                    value={firstName}
                     type="text"
                     name="first_name"
                     id="first_name"
@@ -43,6 +58,8 @@ export default function Signup() {
                 </label>
                 <div className="mt-1">
                   <input
+                    onChange={(e) => setLastName(e.target.value)}
+                    value={lastName}
                     type="text"
                     name="last_name"
                     id="last_name"
@@ -61,6 +78,8 @@ export default function Signup() {
               </label>
               <div className="mt-1">
                 <input
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
                   id="email"
                   name="email"
                   type="email"
@@ -80,6 +99,8 @@ export default function Signup() {
               </label>
               <div className="mt-1">
                 <input
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                   id="password"
                   name="password"
                   type="password"
@@ -100,4 +121,10 @@ export default function Signup() {
       </div>
     </div>
   );
-}
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  signup: (user) => dispatch(signupRequest(user)),
+});
+
+export default connect(null, mapDispatchToProps)(Signup);
