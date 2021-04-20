@@ -1,6 +1,12 @@
+import { useState } from "react";
+import { connect } from "react-redux";
+import { loginRequest } from "../../redux/user/thunks";
 import Logo from "../../components/Logo";
 
-export default function Signin() {
+const Signin = ({ loginRequest }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -14,7 +20,13 @@ export default function Signin() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" action="#" method="POST">
+          <form
+            className="space-y-6"
+            onSubmit={(e) => {
+              e.preventDefault();
+              loginRequest({ email, password });
+            }}
+          >
             <div>
               <label
                 htmlFor="email"
@@ -24,6 +36,7 @@ export default function Signin() {
               </label>
               <div className="mt-1">
                 <input
+                  onChange={(e) => setEmail(e.target.value)}
                   id="email"
                   name="email"
                   type="email"
@@ -43,6 +56,7 @@ export default function Signin() {
               </label>
               <div className="mt-1">
                 <input
+                  onChange={(e) => setPassword(e.target.value)}
                   id="password"
                   name="password"
                   type="password"
@@ -63,4 +77,10 @@ export default function Signin() {
       </div>
     </div>
   );
-}
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  loginRequest: (user) => dispatch(loginRequest(user)),
+});
+
+export default connect(null, mapDispatchToProps)(Signin);

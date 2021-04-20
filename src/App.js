@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 const AuthenticatedApp = React.lazy(() => import("./pages/AuthenticatedApp"));
 
@@ -14,4 +15,8 @@ const App = ({ isLoggedIn = false }) => {
   );
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  isLoggedIn: state.loggedIn,
+});
+
+export default connect(mapStateToProps)(App);

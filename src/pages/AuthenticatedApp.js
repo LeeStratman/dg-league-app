@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Dashboard from "./authenticated/Dashboard";
 
 const AuthenticatedApp = () => {
@@ -7,6 +7,9 @@ const AuthenticatedApp = () => {
     <>
       <Switch>
         <Route path="/" exact component={Dashboard} />
+        <Route path="*">
+          <Redirect to="/" />
+        </Route>
       </Switch>
     </>
   );
