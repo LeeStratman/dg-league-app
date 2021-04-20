@@ -1,5 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect, Link, useLocation } from "react-router-dom";
+import { connect } from "react-redux";
+import { logoutRequest } from "../redux/auth/thunks";
 import Dashboard from "./authenticated/Dashboard";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
@@ -18,7 +20,7 @@ import Logo from "../components/Logo";
 import Avatar from "../components/Avatar";
 import Courses from "./authenticated/Courses";
 
-const AuthenticatedApp = () => {
+const AuthenticatedApp = ({ logout }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
 
@@ -59,7 +61,6 @@ const AuthenticatedApp = () => {
       icon: ClipboardIcon,
       current: location.pathname === "/admin" ? true : false,
     },
-    { name: "Logout", href: "/", icon: LogoutIcon, current: false },
   ];
 
   function classNames(...classes) {
@@ -148,6 +149,21 @@ const AuthenticatedApp = () => {
                         {item.name}
                       </Link>
                     ))}
+                    <Link
+                      key="Logout"
+                      to="/signin"
+                      onClick={() => {
+                        logout();
+                      }}
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white
+                          group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                    >
+                      <LogoutIcon
+                        className="text-gray-400 group-hover:text-gray-300 mr-4 h-6 w-6"
+                        aria-hidden="true"
+                      />
+                      Logout
+                    </Link>
                   </nav>
                 </div>
                 <div className="flex-shrink-0 flex bg-gray-700 p-4">
@@ -208,6 +224,21 @@ const AuthenticatedApp = () => {
                       {item.name}
                     </Link>
                   ))}
+                  <Link
+                    key="Logout"
+                    to="/signin"
+                    onClick={() => {
+                      logout();
+                    }}
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white
+                          group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                  >
+                    <LogoutIcon
+                      className="text-gray-400 group-hover:text-gray-300 mr-4 h-6 w-6"
+                      aria-hidden="true"
+                    />
+                    Logout
+                  </Link>
                 </nav>
               </div>
               <div className="flex-shrink-0 flex bg-gray-700 p-4">
@@ -262,4 +293,8 @@ const AuthenticatedApp = () => {
   );
 };
 
-export default AuthenticatedApp;
+const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch(logoutRequest()),
+});
+
+export default connect(null, mapDispatchToProps)(AuthenticatedApp);

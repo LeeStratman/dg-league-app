@@ -1,5 +1,5 @@
 import axios from "axios";
-import { loginInProgress, loginSuccess, loginFailure } from "./actions";
+import { loginInProgress, loginSuccess, loginFailure, logout } from "./actions";
 import { getError } from "../../utils/error";
 
 const url = "http://localhost:5000/api";
@@ -48,6 +48,11 @@ export const authorizeRequest = () => async (dispatch, getState) => {
   } catch (err) {
     dispatch(loginFailure(getError(err)));
   }
+};
+
+export const logoutRequest = () => async (dispatch, getState) => {
+  removeTokenFromLocalStorage();
+  dispatch(logout());
 };
 
 export function removeTokenFromLocalStorage() {
