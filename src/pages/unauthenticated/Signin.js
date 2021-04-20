@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { loginRequest } from "../../redux/user/thunks";
+import { loginRequest } from "../../redux/auth/thunks";
 import Logo from "../../components/Logo";
 
 const Signin = ({ loginRequest }) => {
