@@ -166,6 +166,20 @@ const AuthenticatedApp = ({ logout }) => {
                       />
                       Logout
                     </Link>
+                    {user.data?.leagues && user.data.leagues?.length > 0 && (
+                      <div className="border-t border-color-white">
+                        {user.data.leagues.map((league) => {
+                          return (
+                            <Link
+                              key={league._id}
+                              className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                            >
+                              {league.name}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
                   </nav>
                 </div>
                 <div className="flex-shrink-0 flex bg-gray-700 p-4">
@@ -242,6 +256,21 @@ const AuthenticatedApp = ({ logout }) => {
                     />
                     Logout
                   </Link>
+
+                  {user.data?.leagues && user.data.leagues?.length > 0 && (
+                    <div className="border-t border-color-white">
+                      {user.data.leagues.map((league) => {
+                        return (
+                          <Link
+                            key={league._id}
+                            className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                          >
+                            {league.name}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
                 </nav>
               </div>
               <div className="flex-shrink-0 flex bg-gray-700 p-4">

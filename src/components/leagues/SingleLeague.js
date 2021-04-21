@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 import Loading from "../alerts/loading";
 import Error from "../alerts/error";
 import useLeague from "../../hooks/useLeague";
+import useJoinLeague from "../../hooks/useJoinLeague";
 
 const SingleLeague = () => {
   const { id } = useParams();
   const league = useLeague(id);
+  const joinLeague = useJoinLeague(id);
 
   return league.isLoading ? (
     <Loading />
@@ -28,7 +30,12 @@ const SingleLeague = () => {
               </p>
             </div>
             <div className="w-32">
-              <button className="w-full btn_primary">Join</button>
+              <button
+                onClick={joinLeague.mutate}
+                className="w-full btn_primary"
+              >
+                Join
+              </button>
             </div>
           </div>
           <div className="mt-5 border-t border-gray-200">
