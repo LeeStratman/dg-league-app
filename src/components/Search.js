@@ -1,6 +1,8 @@
+import React, { useState } from "react";
 import { SearchIcon } from "@heroicons/react/solid";
 
-const Search = ({ value, handleChange }) => {
+const Search = ({ onSearch }) => {
+  const [query, setQuery] = useState("");
   return (
     <div className="flex-1 flex items-center justify-center">
       <div className="w-full">
@@ -12,8 +14,11 @@ const Search = ({ value, handleChange }) => {
             <SearchIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
           </div>
           <input
-            onChange={handleChange}
-            value={value}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              onSearch(e.target.value);
+            }}
+            value={query}
             id="search"
             name="search"
             className="input_basic pl-10 pr-3 leading-5"

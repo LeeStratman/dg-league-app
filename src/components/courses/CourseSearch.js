@@ -1,17 +1,15 @@
 import React, { useState } from "react";
+import useDebounce from "../../hooks/useDebounce";
 import Search from "../Search";
 import CourseList from "./CourseList";
 
 const CourseSearch = () => {
   const [query, setQuery] = useState("");
-
-  const handleChange = (e) => {
-    setQuery(e.target.value);
-  };
+  const onSearch = useDebounce(setQuery);
 
   return (
     <>
-      <Search handleChange={handleChange} value={query} />
+      <Search onSearch={onSearch} />
       <CourseList name={query} />
     </>
   );

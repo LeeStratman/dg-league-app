@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import Search from "../Search";
 import LeagueList from "./LeagueList";
+import useDebounce from "../../hooks/useDebounce";
 
 const LeagueSearch = () => {
-  const [query, setQuery] = useState("");
-
-  const handleChange = (e) => {
-    setQuery(e.target.value);
-  };
+  const [name, setName] = useState("");
+  const onSearch = useDebounce(setName);
 
   return (
     <>
-      <Search handleChange={handleChange} value={query} />
-      <LeagueList name={query} />
+      <Search onSearch={onSearch} />
+      <LeagueList name={name} />
     </>
   );
 };
