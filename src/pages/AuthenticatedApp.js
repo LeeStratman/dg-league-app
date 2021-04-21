@@ -20,10 +20,12 @@ import Logo from "../components/Logo";
 import Avatar from "../components/Avatar";
 import Courses from "./authenticated/Courses";
 import Leagues from "./authenticated/Leagues";
+import useUser from "../hooks/useUser";
 
 const AuthenticatedApp = ({ logout }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const user = useUser();
 
   const navigation = [
     {
@@ -174,7 +176,7 @@ const AuthenticatedApp = ({ logout }) => {
                       </div>
                       <div className="ml-3">
                         <p className="text-base font-medium text-white">
-                          Name of User
+                          {`${user.data.firstName} ${user.data.lastName}`}
                         </p>
                         <p className="text-sm font-medium text-gray-400 group-hover:text-gray-300">
                           Settings
@@ -251,7 +253,7 @@ const AuthenticatedApp = ({ logout }) => {
                     </div>
                     <div className="ml-3">
                       <p className="text-sm font-medium text-white">
-                        Name of user
+                        {`${user.data.firstName} ${user.data.lastName}`}
                       </p>
                       <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200">
                         Settings
