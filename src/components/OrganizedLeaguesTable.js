@@ -18,7 +18,7 @@ const OrganizedLeaguesTable = ({ leagues }) => {
                 <div className="min-w-0 flex-1 flex items-center">
                   <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                     <div>
-                      <p className="text-sm font-medium text-primary truncate">
+                      <p className="text-sm font-medium truncate">
                         {league.name}
                       </p>
                       <p className="mt-2 flex items-center text-sm text-gray-500">
@@ -27,7 +27,7 @@ const OrganizedLeaguesTable = ({ leagues }) => {
                           aria-hidden="true"
                         />
                         <span className="truncate">
-                          {`Members: ${league.player.length}`}
+                          {league.players.length}
                         </span>
                       </p>
                     </div>
