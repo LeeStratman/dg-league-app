@@ -1,8 +1,7 @@
 import React from "react";
-import { Switch, Route, Redirect, Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutRequest } from "../redux/auth/thunks";
-import Dashboard from "./authenticated/Dashboard";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
@@ -18,9 +17,8 @@ import {
 } from "@heroicons/react/outline";
 import Logo from "../components/Logo";
 import Avatar from "../components/Avatar";
-import Courses from "./authenticated/Courses";
-import Leagues from "./authenticated/Leagues";
 import useUser from "../hooks/useUser";
+import LinkRouter from "../components/LinkRouter";
 
 const AuthenticatedApp = ({ logout }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -59,10 +57,10 @@ const AuthenticatedApp = ({ logout }) => {
       current: location.pathname === "/scorecards" ? true : false,
     },
     {
-      name: "Admin",
-      href: "/admin",
+      name: "Manage",
+      href: "/manage",
       icon: ClipboardIcon,
-      current: location.pathname === "/admin" ? true : false,
+      current: location.pathname === "/manage" ? true : false,
     },
   ];
 
@@ -174,6 +172,7 @@ const AuthenticatedApp = ({ logout }) => {
                         {user.data.leagues.map((league) => {
                           return (
                             <Link
+                              to={`/myleague/${league._id}`}
                               key={league._id}
                               className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                             >
@@ -268,6 +267,7 @@ const AuthenticatedApp = ({ logout }) => {
                       {user.data.leagues.map((league) => {
                         return (
                           <Link
+                            to={`/myleague/${league._id}`}
                             key={league._id}
                             className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                           >
@@ -314,19 +314,7 @@ const AuthenticatedApp = ({ logout }) => {
               <MenuIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-
-          <Switch>
-            <Route path="/" exact component={Dashboard} />
-            <Route path="/leagues" component={Leagues} />
-            <Route path="/courses" component={Courses} />
-            <Route path="/schedule" component={Dashboard} />
-            <Route path="/scorecards" component={Dashboard} />
-            <Route path="/admin" component={Dashboard} />
-            <Route path="/settings" exact component={Dashboard} />
-            <Route path="*">
-              <Redirect to="/" />
-            </Route>
-          </Switch>
+          <LinkRouter />
         </div>
       </div>
     </>
