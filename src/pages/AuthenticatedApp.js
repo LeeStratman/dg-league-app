@@ -167,7 +167,10 @@ const AuthenticatedApp = ({ logout }) => {
                       Logout
                     </Link>
                     {user.data?.leagues && user.data.leagues?.length > 0 && (
-                      <div className="border-t border-color-white">
+                      <div className="border-t border-color-white ">
+                        <p className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                          My Leagues
+                        </p>
                         {user.data.leagues.map((league) => {
                           return (
                             <Link
@@ -259,6 +262,9 @@ const AuthenticatedApp = ({ logout }) => {
 
                   {user.data?.leagues && user.data.leagues?.length > 0 && (
                     <div className="border-t border-color-white">
+                      <p className="mt-2 text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                        My Leagues
+                      </p>
                       {user.data.leagues.map((league) => {
                         return (
                           <Link
