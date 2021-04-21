@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
-import axios, { CancelToken } from "axios";
+import { CancelToken } from "axios";
 import { getTokenFromLocalStorage } from "../redux/auth/thunks";
+import API from "../utils/api";
 
 const useUser = () => {
   const token = getTokenFromLocalStorage();
@@ -10,14 +11,12 @@ const useUser = () => {
     () => {
       const source = CancelToken.source();
 
-      const promise = axios
-        .get(`http://localhost:5000/api/users/me`, {
-          cancelToken: source.token,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => res.data);
+      const promise = API.get(`/users/me`, {
+        cancelToken: source.token,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => res.data);
 
       promise.cancel = () => {
         source.cancel("Query was cancelled by React Query");

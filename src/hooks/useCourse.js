@@ -1,16 +1,15 @@
 import { useQuery } from "react-query";
-import axios, { CancelToken } from "axios";
+import { CancelToken } from "axios";
+import API from "../utils/api";
 
 const useCourse = (courseId) => {
   return useQuery(
     ["course", courseId],
     () => {
       const source = CancelToken.source();
-      const promise = axios
-        .get(`http://localhost:5000/api/courses/${courseId}`, {
-          cancelToken: source.token,
-        })
-        .then((res) => res.data);
+      const promise = API.get(`/courses/${courseId}`, {
+        cancelToken: source.token,
+      }).then((res) => res.data);
 
       promise.cancel = () => {
         source.cancel("Query was cancelled by React Query");

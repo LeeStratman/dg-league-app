@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
-import axios, { CancelToken } from "axios";
+import { CancelToken } from "axios";
+import API from "../utils/api";
 import { getTokenFromLocalStorage } from "../redux/auth/thunks";
 
 const useLeague = (leagueId) => {
@@ -10,14 +11,12 @@ const useLeague = (leagueId) => {
     () => {
       const source = CancelToken.source();
 
-      const promise = axios
-        .get(`http://localhost:5000/api/leagues/${leagueId}`, {
-          cancelToken: source.token,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => res.data);
+      const promise = API.get(`/leagues/${leagueId}`, {
+        cancelToken: source.token,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => res.data);
 
       promise.cancel = () => {
         source.cancel("Query was cancelled by React Query");

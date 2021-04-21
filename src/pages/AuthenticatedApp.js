@@ -35,13 +35,13 @@ const AuthenticatedApp = ({ logout }) => {
       current: location.pathname === "/" ? true : false,
     },
     {
-      name: "Leagues",
+      name: "Search Leagues",
       href: "/leagues",
       icon: UserGroupIcon,
       current: location.pathname === "/leagues" ? true : false,
     },
     {
-      name: "Courses",
+      name: "Search Courses",
       href: "/courses",
       icon: LocationMarkerIcon,
       current: location.pathname === "/courses" ? true : false,

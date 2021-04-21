@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
-import axios from "axios";
+import API from "../utils/api";
 import { getTokenFromLocalStorage } from "../redux/auth/thunks";
 
 const useJoinLeague = (leagueId) => {
@@ -9,8 +9,8 @@ const useJoinLeague = (leagueId) => {
 
   return useMutation(
     () =>
-      axios.post(
-        `http://localhost:5000/api/leagues/${leagueId}/join`,
+      API.post(
+        `/leagues/${leagueId}/join`,
         {},
         {
           headers: {
