@@ -4,6 +4,7 @@ import Dashboard from "../pages/authenticated/Dashboard";
 import Manage from "../pages/authenticated/Manage";
 import Courses from "../pages/authenticated/Courses";
 import Leagues from "../pages/authenticated/Leagues";
+import CreateLeague from "../pages/authenticated/CreateLeague";
 
 const LinkRouter = () => (
   <Switch>
@@ -14,6 +15,7 @@ const LinkRouter = () => (
     <Route path="/scorecards" component={Dashboard} />
     <Route path="/manage" component={Manage} />
     <Route path="/settings" exact component={Dashboard} />
+    <Route path="/create-league" exact component={CreateLeague} />
     <Route path="*">
       <Redirect to="/" />
     </Route>
