@@ -11,13 +11,13 @@ const LeagueList = ({ name }) => {
   ) : leagues.isError ? (
     <Error message={leagues.error.message} />
   ) : (
-    <div>
-      {leagues.data && leagues.data.length > 0 ? (
+    <div className="mt-2">
+      {leagues.isIdle ? null : leagues.data?.length > 0 ? (
         leagues.data.map((league) => (
           <LeagueItem key={league._id} league={league} />
         ))
       ) : (
-        <div>No leagues found</div>
+        <Error message="No leagues found!" />
       )}
       {leagues.isFetching ? "Updating..." : null}
     </div>

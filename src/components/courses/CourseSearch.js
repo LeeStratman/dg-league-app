@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Search from "../Search";
-import CourseResults from "./CourseResults";
+import CourseList from "./CourseList";
 
 const CourseSearch = () => {
   const [query, setQuery] = useState("");
@@ -12,7 +12,7 @@ const CourseSearch = () => {
   return (
     <>
       <Search handleChange={handleChange} value={query} />
-      <CourseResults name={query} />
+      <CourseList name={query} />
     </>
   );
 };
