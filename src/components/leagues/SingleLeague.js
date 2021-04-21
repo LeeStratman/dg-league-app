@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Loading from "../alerts/loading";
-import Error from "../alerts/error";
+import Loading from "../alerts/Loading";
+import Error from "../alerts/Error";
 import useLeague from "../../hooks/useLeague";
 import useJoinLeague from "../../hooks/useJoinLeague";
 

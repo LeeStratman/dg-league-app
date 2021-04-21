@@ -1,8 +1,8 @@
 import React from "react";
 import Content from "../../components/Content";
 import useUser from "../../hooks/useUser";
-import Error from "../../components/alerts/error";
-import Loading from "../../components/alerts/loading";
+import Error from "../../components/alerts/Error";
+import Loading from "../../components/alerts/Loading";
 
 const Dashboard = () => {
   const user = useUser();

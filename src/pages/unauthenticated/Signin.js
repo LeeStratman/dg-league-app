@@ -2,7 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { loginRequest } from "../../redux/auth/thunks";
 import Logo from "../../components/Logo";
-import Error from "../../components/alerts/error";
+import Error from "../../components/alerts/Error";
 
 const Signin = ({ loginRequest, error }) => {
   const [email, setEmail] = useState("");

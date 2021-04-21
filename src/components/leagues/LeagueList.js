@@ -1,5 +1,5 @@
-import Loading from "../alerts/loading";
-import Error from "../alerts/error";
+import Loading from "../alerts/Loading";
+import Error from "../alerts/Error";
 import LeagueItem from "./LeagueItem";
 import useLeagueSearch from "../../hooks/useLeagueSearch";
 
