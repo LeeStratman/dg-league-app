@@ -175,9 +175,11 @@ const AuthenticatedApp = ({ logout }) => {
                         <Avatar size={10} />
                       </div>
                       <div className="ml-3">
-                        <p className="text-base font-medium text-white">
-                          {`${user.data.firstName} ${user.data.lastName}`}
-                        </p>
+                        {user.data && (
+                          <p className="text-base font-medium text-white">
+                            {`${user.data.firstName} ${user.data.lastName}`}
+                          </p>
+                        )}
                         <p className="text-sm font-medium text-gray-400 group-hover:text-gray-300">
                           Settings
                         </p>
@@ -252,9 +254,11 @@ const AuthenticatedApp = ({ logout }) => {
                       <Avatar size={9} />
                     </div>
                     <div className="ml-3">
-                      <p className="text-sm font-medium text-white">
-                        {`${user.data.firstName} ${user.data.lastName}`}
-                      </p>
+                      {user.data && (
+                        <p className="text-sm font-medium text-white">
+                          {`${user.data.firstName} ${user.data.lastName}`}
+                        </p>
+                      )}
                       <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200">
                         Settings
                       </p>
