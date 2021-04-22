@@ -14,7 +14,7 @@ const MainContent = ({ setSidebarOpen, children }) => {
           <MenuIcon className="h-6 w-6" aria-hidden="true" />
         </button>
       </div>
-      {children}
+      <div className="flex-1 relative z-0 flex overflow-hidden">{children}</div>
     </div>
   );
 };
