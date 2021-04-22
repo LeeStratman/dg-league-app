@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { authorizeRequest } from "./redux/auth/thunks";
+import { authorizeRequest } from "../redux/auth/thunks";
 
-const AuthenticatedApp = React.lazy(() => import("./pages/AuthenticatedApp"));
+const AuthenticatedApp = React.lazy(() => import("../pages/AuthenticatedApp"));
 
 const UnauthenticatedApp = React.lazy(() =>
-  import("./pages/UnauthenticatedApp")
+  import("../pages/UnauthenticatedApp")
 );
 
 const App = ({ isLoggedIn = false, authorizeRequest }) => {
