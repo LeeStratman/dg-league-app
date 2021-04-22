@@ -1,12 +1,12 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Dashboard from "../pages/authenticated/Dashboard";
-import Manage from "../pages/authenticated/Manage";
-import Courses from "../pages/authenticated/Courses";
-import Leagues from "../pages/authenticated/Leagues";
-import CreateLeague from "../pages/authenticated/CreateLeague";
+import Dashboard from "../../pages/authenticated/Dashboard";
+import Manage from "../../pages/authenticated/Manage";
+import Courses from "../../pages/authenticated/Courses";
+import Leagues from "../../pages/authenticated/Leagues";
+import CreateLeague from "../../pages/authenticated/CreateLeague";
 
-const LinkRouter = () => (
+const AuthenticatedRoutes = () => (
   <Switch>
     <Route path="/" exact>
       <Dashboard />
@@ -14,7 +14,7 @@ const LinkRouter = () => (
     <Route path="/leagues">
       <Leagues />
     </Route>
-    <Route path="/courses" component={Courses}>
+    <Route path="/courses">
       <Courses />
     </Route>
     <Route path="/schedule">
@@ -38,4 +38,4 @@ const LinkRouter = () => (
   </Switch>
 );
 
-export default LinkRouter;
+export default AuthenticatedRoutes;

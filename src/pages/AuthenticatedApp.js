@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../components/navigation/Sidebar";
 import MainContent from "../components/content/MainContent";
-import LinkRouter from "../components/LinkRouter";
+import AuthenticatedRoutes from "../components/router/AuthenticatedRoutes";
 
 const AuthenticatedApp = ({ logout }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -11,7 +11,7 @@ const AuthenticatedApp = ({ logout }) => {
       <div className="h-screen flex overflow-hidden bg-gray-100">
         <Sidebar setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
         <MainContent setSidebarOpen={setSidebarOpen}>
-          <LinkRouter />
+          <AuthenticatedRoutes />
         </MainContent>
       </div>
     </>
