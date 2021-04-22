@@ -8,14 +8,30 @@ import CreateLeague from "../pages/authenticated/CreateLeague";
 
 const LinkRouter = () => (
   <Switch>
-    <Route path="/" exact component={Dashboard} />
-    <Route path="/leagues" component={Leagues} />
-    <Route path="/courses" component={Courses} />
-    <Route path="/schedule" component={Dashboard} />
-    <Route path="/scorecards" component={Dashboard} />
-    <Route path="/manage" component={Manage} />
-    <Route path="/settings" exact component={Dashboard} />
-    <Route path="/create-league" exact component={CreateLeague} />
+    <Route path="/" exact>
+      <Dashboard />
+    </Route>
+    <Route path="/leagues">
+      <Leagues />
+    </Route>
+    <Route path="/courses" component={Courses}>
+      <Courses />
+    </Route>
+    <Route path="/schedule">
+      <Dashboard />
+    </Route>
+    <Route path="/scorecards">
+      <Dashboard />
+    </Route>
+    <Route path="/manage">
+      <Manage />
+    </Route>
+    <Route path="/settings" exact>
+      <Dashboard />
+    </Route>
+    <Route path="/create-league" exact>
+      <CreateLeague />
+    </Route>
     <Route path="*">
       <Redirect to="/" />
     </Route>
