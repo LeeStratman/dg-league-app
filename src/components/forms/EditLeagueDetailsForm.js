@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useUpdateLeague from "../../hooks/useUpdateLeague";
 
-const DetailsForm = ({ league }) => {
+const EditLeagueDetailsForm = ({ league }) => {
   const [name, setName] = useState(league.name);
   const [description, setDescription] = useState(league.description);
   const [city, setCity] = useState(league.city);
@@ -143,4 +143,4 @@ const DetailsForm = ({ league }) => {
   );
 };
 
-export default DetailsForm;
+export default EditLeagueDetailsForm;
