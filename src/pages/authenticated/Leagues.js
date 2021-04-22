@@ -1,17 +1,19 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
-import Content from "../../components/Content";
+import Content from "../../components/content/Content";
+import Aside from "../../components/content/Aside";
 import LeagueSearch from "../../components/leagues/LeagueSearch";
-import SingleLeague from "../../components/leagues/SingleLeague";
+import LeagueRoutes from "../../components/routes/LeagueRoutes";
 
 const Leagues = () => {
   return (
-    <Content title="Leagues" Aside={LeagueSearch}>
-      <Switch>
-        <Route path="/leagues/:id" exact component={SingleLeague} />
-        <Route path="*" component={() => <div>No league selected</div>} />
-      </Switch>
-    </Content>
+    <>
+      <Content title="Leagues">
+        <LeagueRoutes />
+      </Content>
+      <Aside>
+        <LeagueSearch />
+      </Aside>
+    </>
   );
 };
 

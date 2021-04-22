@@ -1,16 +1,11 @@
 import React from "react";
-import Content from "../../components/Content";
-import { Switch, Route } from "react-router-dom";
-import ManageLeague from "../../components/leagues/ManageLeague";
-import ManageLeagues from "../../components/leagues/ManageLeagues";
+import Content from "../../components/content/Content";
+import ManageRoutes from "../../components/routes/ManageRoutes";
 
 const Manage = () => {
   return (
     <Content title="Manage My Leagues">
-      <Switch>
-        <Route path="/manage/:id" exact component={ManageLeague} />
-        <Route path="/manage" component={ManageLeagues} />
-      </Switch>
+      <ManageRoutes />
     </Content>
   );
 };
