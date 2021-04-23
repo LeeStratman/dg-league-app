@@ -53,7 +53,7 @@ const CreateEventForm = ({ leagueId }) => {
                 <input
                   onChange={(e) => setDate(e.target.value)}
                   value={date}
-                  type="text"
+                  type="date"
                   name="name"
                   id="name"
                   className="input_basic"
