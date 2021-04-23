@@ -8,13 +8,13 @@ import EditLeagueDetails from "../../pages/authenticated/EditLeagueDetails";
 const ManageLeagueRoutes = ({ league }) => {
   return (
     <Switch>
-      <Route path="/manage/:id/add-course">
+      <Route path="/manage/:leagueId/add-course">
         <AddCourse league={league} />
       </Route>
-      <Route path="/manage/:id/events">
+      <Route path="/manage/:leagueId/events">
         <LeagueEvents leagueId={league._id} />
       </Route>
-      <Route path="/manage/:id/create-event">
+      <Route path="/manage/:leagueId/create-event">
         <CreateEvent leagueId={league._id} />
       </Route>
       <Route path="/manage/*">

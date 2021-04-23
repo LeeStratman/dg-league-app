@@ -6,7 +6,7 @@ import ManageLeagues from "../leagues/ManageLeagues";
 const ManageRoutes = () => {
   return (
     <Switch>
-      <Route path="/manage/:id" component={ManageLeague} />
+      <Route path="/manage/:leagueId" component={ManageLeague} />
       <Route path="*" component={ManageLeagues} />
     </Switch>
   );

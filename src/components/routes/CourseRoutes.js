@@ -4,7 +4,7 @@ import SingleCourse from "../../components/courses/SingleCourse";
 
 const CourseRoutes = () => (
   <Switch>
-    <Route path="/courses/:id" exact component={SingleCourse} />
+    <Route path="/courses/:courseId" exact component={SingleCourse} />
     <Route path="*" component={() => <div>No course selected</div>} />
     <Route path="*">
       <Redirect to="/courses" />

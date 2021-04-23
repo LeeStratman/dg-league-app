@@ -5,8 +5,8 @@ import Error from "../alerts/Error";
 import useCourse from "../../hooks/queries/useCourse";
 
 const SingleCourse = () => {
-  const { id } = useParams();
-  const course = useCourse(id);
+  const { courseId } = useParams();
+  const course = useCourse(courseId);
 
   return course.isLoading ? (
     <Loading />

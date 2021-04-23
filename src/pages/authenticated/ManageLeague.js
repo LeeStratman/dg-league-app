@@ -13,28 +13,30 @@ import ManageLeagueRoutes from "../../components/routes/ManageLeagueRoutes";
 import SubTitle from "../../components/SubTitle";
 
 const ManageLeague = () => {
-  const { id } = useParams();
-  const league = useLeague(id);
+  const { leagueId } = useParams();
+  const league = useLeague(leagueId);
   const location = useLocation();
 
   const navigation = [
     {
       name: "Details",
-      href: `/manage/${id}`,
+      href: `/manage/${leagueId}`,
       icon: InformationCircleIcon,
-      current: location.pathname === `/manage/${id}` ? true : false,
+      current: location.pathname === `/manage/${leagueId}` ? true : false,
     },
     {
       name: "Courses",
-      href: `/manage/${id}/add-course`,
+      href: `/manage/${leagueId}/add-course`,
       icon: LocationMarkerIcon,
-      current: location.pathname === `/manage/${id}/add-course` ? true : false,
+      current:
+        location.pathname === `/manage/${leagueId}/add-course` ? true : false,
     },
     {
       name: "Events",
-      href: `/manage/${id}/events`,
+      href: `/manage/${leagueId}/events`,
       icon: CalendarIcon,
-      current: location.pathname === `/manage/${id}/events` ? true : false,
+      current:
+        location.pathname === `/manage/${leagueId}/events` ? true : false,
     },
   ];
 

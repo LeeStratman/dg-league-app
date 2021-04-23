@@ -6,9 +6,9 @@ import useLeague from "../../hooks/queries/useLeague";
 import useJoinLeague from "../../hooks/mutations/useJoinLeague";
 
 const SingleLeague = () => {
-  const { id } = useParams();
-  const league = useLeague(id);
-  const joinLeague = useJoinLeague(id);
+  const { leagueId } = useParams();
+  const league = useLeague(leagueId);
+  const joinLeague = useJoinLeague(leagueId);
 
   return league.isLoading ? (
     <Loading />
