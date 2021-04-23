@@ -1,14 +1,21 @@
 import { useQuery } from "react-query";
 import { CancelToken } from "axios";
-import API from "../utils/api";
+import API from "../../utils/api";
+import { getTokenFromLocalStorage } from "../../redux/auth/thunks";
 
-const useCourse = (courseId) => {
+const useLeague = (leagueId) => {
+  const token = getTokenFromLocalStorage();
+
   return useQuery(
-    ["course", courseId],
+    ["league", leagueId],
     () => {
       const source = CancelToken.source();
-      const promise = API.get(`/courses/${courseId}`, {
+
+      const promise = API.get(`/leagues/${leagueId}`, {
         cancelToken: source.token,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }).then((res) => res.data);
 
       promise.cancel = () => {
@@ -20,12 +27,12 @@ const useCourse = (courseId) => {
     {
       refetchOnWindowFocus: false,
       staleTime: Infinity,
-      cacheTime: 5000,
-      enabled: courseId ? true : false,
-      retry: 1,
+      cacheTime: Infinity,
+      enabled: leagueId && token ? true : false,
+      retry: 3,
       retryDelay: 1000,
     }
   );
 };
 
-export default useCourse;
+export default useLeague;

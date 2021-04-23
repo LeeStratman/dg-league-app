@@ -1,7 +1,7 @@
 import Loading from "../alerts/Loading";
 import Error from "../alerts/Error";
 import LeagueItem from "./LeagueItem";
-import useLeagueSearch from "../../hooks/useLeagueSearch";
+import useLeagueSearch from "../../hooks/queries/useLeagueSearch";
 
 const LeagueList = ({ name }) => {
   const leagues = useLeagueSearch(name);

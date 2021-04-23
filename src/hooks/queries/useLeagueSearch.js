@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { CancelToken } from "axios";
-import API from "../utils/api";
-import { getTokenFromLocalStorage } from "../redux/auth/thunks";
+import API from "../../utils/api";
+import { getTokenFromLocalStorage } from "../../redux/auth/thunks";
 
 function useLeagueSearch(name, location) {
   const token = getTokenFromLocalStorage();

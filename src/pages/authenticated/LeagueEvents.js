@@ -1,6 +1,6 @@
 import React from "react";
 import EventList from "../../components/events/EventsList";
-import useLeagueEvents from "../../hooks/useLeagueEvents";
+import useLeagueEvents from "../../hooks/queries/useLeagueEvents";
 import Loading from "../../components/alerts/Loading";
 import Error from "../../components/alerts/Error";
 import { Link } from "react-router-dom";

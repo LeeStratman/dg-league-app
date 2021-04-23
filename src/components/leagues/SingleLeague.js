@@ -2,8 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../alerts/Loading";
 import Error from "../alerts/Error";
-import useLeague from "../../hooks/useLeague";
-import useJoinLeague from "../../hooks/useJoinLeague";
+import useLeague from "../../hooks/queries/useLeague";
+import useJoinLeague from "../../hooks/mutations/useJoinLeague";
 
 const SingleLeague = () => {
   const { id } = useParams();

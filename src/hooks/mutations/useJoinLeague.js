@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import API from "../utils/api";
-import { getTokenFromLocalStorage } from "../redux/auth/thunks";
+import API from "../../utils/api";
+import { getTokenFromLocalStorage } from "../../redux/auth/thunks";
 
 const useJoinLeague = (leagueId) => {
   const token = getTokenFromLocalStorage();

@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, useLocation } from "react-router-dom";
 import Loading from "../../components/alerts/Loading";
 import Error from "../../components/alerts/Error";
-import useLeague from "../../hooks/useLeague";
+import useLeague from "../../hooks/queries/useLeague";
 import {
   InformationCircleIcon,
   LocationMarkerIcon,
@@ -16,7 +16,6 @@ const ManageLeague = () => {
   const { id } = useParams();
   const league = useLeague(id);
   const location = useLocation();
-  console.log("update manage league page.");
 
   const navigation = [
     {

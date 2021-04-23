@@ -1,22 +1,22 @@
 import { useMutation, useQueryClient } from "react-query";
-import API from "../utils/api";
-import { getTokenFromLocalStorage } from "../redux/auth/thunks";
+import API from "../../utils/api";
+import { getTokenFromLocalStorage } from "../../redux/auth/thunks";
 
-const useUpdateLeague = () => {
+const useCreateLeague = () => {
   const token = getTokenFromLocalStorage();
 
   const queryClient = useQueryClient();
 
   return useMutation(
     (league) =>
-      API.put(`/leagues/${league._id}`, league, {
+      API.post(`/leagues`, league, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }),
     {
-      onSuccess: (data, leagueId) => {
-        queryClient.invalidateQueries(["league", leagueId]);
+      onSuccess: () => {
+        queryClient.invalidateQueries("user");
       },
       onError: (err) => {
         //Alert user. err.response.data.error
@@ -25,4 +25,4 @@ const useUpdateLeague = () => {
   );
 };
 
-export default useUpdateLeague;
+export default useCreateLeague;

@@ -1,9 +1,8 @@
 import Loading from "../alerts/Loading";
 import Error from "../alerts/Error";
-import CourseItem from "./CourseItem";
-import useCourseSearch from "../../hooks/useCourseSearch";
+import useCourseSearch from "../../hooks/queries/useCourseSearch";
 
-const CourseList = ({ name }) => {
+const CourseList = ({ name, CourseComponent }) => {
   const courses = useCourseSearch(name);
 
   return courses.isLoading ? (
@@ -14,7 +13,7 @@ const CourseList = ({ name }) => {
     <div className="mt-2">
       {courses.isIdle ? null : courses.data?.length > 0 ? (
         courses.data.map((course) => (
-          <CourseItem key={course.course_id} course={course} />
+          <CourseComponent key={course.course_id} course={course} />
         ))
       ) : (
         <Error message="No courses found!" />

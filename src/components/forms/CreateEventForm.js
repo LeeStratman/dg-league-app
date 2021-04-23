@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useCreateEvent from "../../hooks/useCreateEvent";
+import useCreateEvent from "../../hooks/mutations/useCreateEvent";
 
 const CreateEventForm = ({ leagueId }) => {
   const [name, setName] = useState("");

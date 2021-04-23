@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useUser from "../../hooks/useUser";
+import useUser from "../../hooks/queries/useUser";
 import Loading from "../../components/alerts/Loading";
 import Error from "../../components/alerts/Error";
 import OrganizedLeaguesTable from "../../components/OrganizedLeaguesTable";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useCreateLeague from "../../hooks/useCreateLeague";
+import useCreateLeague from "../../hooks/mutations/useCreateLeague";
 import { Redirect } from "react-router-dom";
 
 const CreateLeagueForm = () => {

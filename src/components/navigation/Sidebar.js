@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { logoutRequest } from "../../redux/auth/thunks";
 import { Link, useLocation } from "react-router-dom";
-import useUser from "../../hooks/useUser";
+import useUser from "../../hooks/queries/useUser";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {

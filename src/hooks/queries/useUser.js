@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { CancelToken } from "axios";
-import { getTokenFromLocalStorage } from "../redux/auth/thunks";
-import API from "../utils/api";
+import { getTokenFromLocalStorage } from "../../redux/auth/thunks";
+import API from "../../utils/api";
 
 const useUser = () => {
   const token = getTokenFromLocalStorage();
@@ -25,7 +25,7 @@ const useUser = () => {
       return promise;
     },
     {
-      refetchOnWindowFocus: true,
+      refetchOnWindowFocus: false,
       staleTime: 10000,
       // cacheTime: 10000,
       enabled: token ? true : false,

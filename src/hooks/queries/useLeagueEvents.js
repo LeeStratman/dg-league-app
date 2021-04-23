@@ -1,17 +1,17 @@
 import { useQuery } from "react-query";
 import { CancelToken } from "axios";
-import API from "../utils/api";
-import { getTokenFromLocalStorage } from "../redux/auth/thunks";
+import API from "../../utils/api";
+import { getTokenFromLocalStorage } from "../../redux/auth/thunks";
 
-const useLeague = (leagueId) => {
+function useLeagueEvents(leagueId) {
   const token = getTokenFromLocalStorage();
 
   return useQuery(
-    ["league", leagueId],
+    ["events", leagueId],
     () => {
       const source = CancelToken.source();
 
-      const promise = API.get(`/leagues/${leagueId}`, {
+      const promise = API.get(`/leagues/${String(leagueId)}/events`, {
         cancelToken: source.token,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -25,14 +25,14 @@ const useLeague = (leagueId) => {
       return promise;
     },
     {
-      refetchOnWindowFocus: true,
-      staleTime: 1000,
-      cacheTime: 10000,
-      enabled: leagueId && token ? true : false,
-      retry: 3,
+      refetchOnWindowFocus: false,
+      staleTime: Infinity,
+      cacheTime: 5000,
+      enabled: leagueId ? true : false,
+      retry: 1,
       retryDelay: 1000,
     }
   );
-};
+}
 
-export default useLeague;
+export default useLeagueEvents;

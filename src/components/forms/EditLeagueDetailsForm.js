@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useUpdateLeague from "../../hooks/useUpdateLeague";
+import useUpdateLeague from "../../hooks/mutations/useUpdateLeague";
 
 const EditLeagueDetailsForm = ({ league }) => {
   const [name, setName] = useState(league.name);

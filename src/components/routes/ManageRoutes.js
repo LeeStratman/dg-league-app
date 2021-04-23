@@ -7,7 +7,7 @@ const ManageRoutes = () => {
   return (
     <Switch>
       <Route path="/manage/:id" component={ManageLeague} />
-      <Route path="/manage/*" exact component={ManageLeagues} />
+      <Route path="*" component={ManageLeagues} />
     </Switch>
   );
 };

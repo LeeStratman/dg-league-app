@@ -1,13 +1,13 @@
 import { useQuery } from "react-query";
 import { CancelToken } from "axios";
-import API from "../utils/api";
+import API from "../../utils/api";
 
-function useCourseSearch(name) {
+const useCourse = (courseId) => {
   return useQuery(
-    ["courses", name],
+    ["course", courseId],
     () => {
       const source = CancelToken.source();
-      const promise = API.get(`/courses/?name=${name}`, {
+      const promise = API.get(`/courses/${courseId}`, {
         cancelToken: source.token,
       }).then((res) => res.data);
 
@@ -21,11 +21,11 @@ function useCourseSearch(name) {
       refetchOnWindowFocus: false,
       staleTime: Infinity,
       cacheTime: 5000,
-      enabled: name ? true : false,
+      enabled: courseId ? true : false,
       retry: 1,
       retryDelay: 1000,
     }
   );
-}
+};
 
-export default useCourseSearch;
+export default useCourse;

@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../alerts/Loading";
 import Error from "../alerts/Error";
-import useCourse from "../../hooks/useCourse";
+import useCourse from "../../hooks/queries/useCourse";
 
 const SingleCourse = () => {
   const { id } = useParams();

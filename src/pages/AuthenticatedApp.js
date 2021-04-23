@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../components/navigation/Sidebar";
 import MainContent from "../components/content/MainContent";
-import AuthenticatedRoutes from "../components/router/AuthenticatedRoutes";
+import AuthenticatedRoutes from "../components/routes/AuthenticatedRoutes";
 
 const AuthenticatedApp = ({ logout }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);

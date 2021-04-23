@@ -1,6 +1,6 @@
 import React from "react";
 import Content from "../../components/content/Content";
-import useUser from "../../hooks/useUser";
+import useUser from "../../hooks/queries/useUser";
 import Error from "../../components/alerts/Error";
 import Loading from "../../components/alerts/Loading";
 

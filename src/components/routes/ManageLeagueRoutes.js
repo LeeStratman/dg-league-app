@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import LeagueEvents from "../../components/events/LeagueEvents";
+import LeagueEvents from "../../pages/authenticated/LeagueEvents";
 import AddCourse from "../../components/leagues/AddCourse";
-import CreateEvent from "../../components/leagues/CreateEvent";
+import CreateEvent from "../../pages/authenticated/CreateEvent";
 import EditLeagueDetails from "../../pages/authenticated/EditLeagueDetails";
 
 const ManageLeagueRoutes = ({ league }) => {
