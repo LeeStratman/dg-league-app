@@ -20,7 +20,7 @@ const useCourse = (courseId) => {
     {
       refetchOnWindowFocus: false,
       staleTime: Infinity,
-      cacheTime: 5000,
+      cacheTime: Infinity,
       enabled: courseId ? true : false,
       retry: 1,
       retryDelay: 1000,

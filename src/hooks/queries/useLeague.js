@@ -26,10 +26,10 @@ const useLeague = (leagueId) => {
     },
     {
       refetchOnWindowFocus: false,
-      staleTime: Infinity,
-      cacheTime: Infinity,
+      // staleTime: Infinity,
+      // cacheTime: Infinity,
       enabled: leagueId && token ? true : false,
-      retry: 3,
+      retry: 0,
       retryDelay: 1000,
     }
   );
