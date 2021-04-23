@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SecondaryMenu = ({ navigation }) => {
   function classNames(...classes) {
@@ -9,9 +10,9 @@ const SecondaryMenu = ({ navigation }) => {
     <aside className="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3">
       <nav className="space-y-1">
         {navigation.map((item) => (
-          <a
+          <Link
             key={item.name}
-            href={item.href}
+            to={item.href}
             className={classNames(
               item.current
                 ? "bg-gray-50 text-indigo-700 hover:text-indigo-700 hover:bg-white"
@@ -30,7 +31,7 @@ const SecondaryMenu = ({ navigation }) => {
               aria-hidden="true"
             />
             <span className="truncate">{item.name}</span>
-          </a>
+          </Link>
         ))}
       </nav>
     </aside>
