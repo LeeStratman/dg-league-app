@@ -5,6 +5,7 @@ import useLeague from "../../hooks/queries/useLeague";
 import Error from "../../components/alerts/Error";
 import Loading from "../../components/alerts/Loading";
 import LayoutRadioGroup from "./LayoutRadioGroup";
+import { formatDate, prepareDate } from "../../utils/date";
 
 const EditEventDetailsForm = ({ event }) => {
   const league = useLeague(event.leagueId);
@@ -16,25 +17,9 @@ const EditEventDetailsForm = ({ event }) => {
   const [layoutDescription, setLayoutDescription] = useState(() =>
     event.layout ? event.layout.description : ""
   );
-  const [course, setCourse] = useState(event.layout.courseId);
   const [layout, setLayout] = useState(event.layout.tee_pos - 1);
-  const [date, setDate] = useState(() => {
-    function appendLeadingZeroes(n) {
-      if (n <= 9) {
-        return "0" + n;
-      }
-      return n;
-    }
-    let date = new Date(event.date);
-
-    return (
-      date.getFullYear() +
-      "-" +
-      appendLeadingZeroes(date.getMonth() + 1) +
-      "-" +
-      appendLeadingZeroes(date.getDate())
-    );
-  });
+  const [course, setCourse] = useState(event.layout.courseId);
+  const [date, setDate] = useState(formatDate(event.date));
 
   const handleCourseChange = (course) => {
     setLayout(null);
@@ -51,7 +36,7 @@ const EditEventDetailsForm = ({ event }) => {
           _id: event._id,
           name,
           description,
-          date,
+          date: prepareDate(date),
           layout: {
             name: layoutName,
             description: layoutDescription,
