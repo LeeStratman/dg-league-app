@@ -4,7 +4,7 @@ import Search from "../../components/Search";
 import CourseList from "../../components/courses/CourseList";
 import AddCourseItem from "../../components/leagues/AddCourseItem";
 
-const AddCourse = () => {
+const EditLeagueCourses = () => {
   const [name, setName] = useState("");
   const onSearch = useDebounce(setName);
 
@@ -18,4 +18,4 @@ const AddCourse = () => {
   );
 };
 
-export default AddCourse;
+export default EditLeagueCourses;
