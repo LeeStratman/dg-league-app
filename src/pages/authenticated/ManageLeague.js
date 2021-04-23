@@ -16,6 +16,7 @@ const ManageLeague = () => {
   const { id } = useParams();
   const league = useLeague(id);
   const location = useLocation();
+  console.log("update manage league page.");
 
   const navigation = [
     {
