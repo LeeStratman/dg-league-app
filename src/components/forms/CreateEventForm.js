@@ -3,7 +3,6 @@ import useCreateEvent from "../../hooks/mutations/useCreateEvent";
 import useLeague from "../../hooks/queries/useLeague";
 import Error from "../../components/alerts/Error";
 import Loading from "../../components/alerts/Loading";
-import LayoutRadioGroup from "./LayoutRadioGroup";
 import CourseDropdown from "./CourseDropdown";
 import { prepareDate } from "../../utils/date";
 
@@ -14,14 +13,8 @@ const CreateEventForm = ({ leagueId }) => {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [course, setCourse] = useState("");
-  const [layoutName, setLayoutName] = useState("");
+  const [numHoles, setNumHoles] = useState(18);
   const [layoutDescription, setLayoutDescription] = useState("");
-  const [layout, setLayout] = useState(0);
-
-  const handleCourseChange = (course) => {
-    setLayout(null);
-    setCourse(course.course_id);
-  };
 
   return (
     <form
@@ -33,10 +26,9 @@ const CreateEventForm = ({ leagueId }) => {
           description,
           date: prepareDate(date),
           layout: {
-            name: layoutName,
             description: layoutDescription,
-            tee_pos: layout + 1,
-            courseId: course,
+            numHoles: numHoles,
+            course,
           },
         });
       }}
@@ -127,68 +119,49 @@ const CreateEventForm = ({ leagueId }) => {
                 {league.isIdle ? null : league.data?.courses?.length > 0 ? (
                   <>
                     <CourseDropdown
-                      selected={league.data.courses.find(
-                        (crs) => crs.course_id === course
-                      )}
-                      setSelected={handleCourseChange}
+                      selected={course}
+                      setSelected={setCourse}
                       options={league.data.courses}
                     />
-                    {course ? (
-                      <>
-                        <div className="mt-4">
-                          <LayoutRadioGroup
-                            selected={layout}
-                            setSelected={setLayout}
-                            layouts={
-                              league.data.courses.find(
-                                (crs) => crs.course_id === course
-                              ).layouts
-                            }
-                          />
-                        </div>
-                        <div className="mt-4 col-span-3 sm:col-span-2">
-                          <label
-                            htmlFor="layoutName"
-                            className="block text-sm font-medium text-gray-700"
-                          >
-                            Layout Name
-                          </label>
-                          <div className="mt-1 rounded-md shadow-sm flex">
-                            <input
-                              onChange={(e) => setLayoutName(e.target.value)}
-                              value={layoutName}
-                              type="text"
-                              name="layoutName"
-                              id="layoutName"
-                              className="input_basic"
-                            />
-                          </div>
-                        </div>
-                        <div className="mt-4 col-span-3">
-                          <label
-                            htmlFor="layoutDescription"
-                            className="block text-sm font-medium text-gray-700"
-                          >
-                            Layout Notes
-                          </label>
-                          <div className="mt-1">
-                            <textarea
-                              onChange={(e) =>
-                                setLayoutDescription(e.target.value)
-                              }
-                              value={layoutDescription}
-                              id="layoutDescription"
-                              name="layoutDescription"
-                              rows={3}
-                              className="input_basic"
-                            />
-                          </div>
-                          <p className="mt-2 text-sm text-gray-500">
-                            Provide layout instructions to the players.
-                          </p>
-                        </div>
-                      </>
-                    ) : null}
+                    <div className="mt-4 col-span-3">
+                      <label
+                        htmlFor="numHoles"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Number of Holes
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          onChange={(e) => setNumHoles(e.target.value)}
+                          value={numHoles}
+                          type="number"
+                          name="numHoles"
+                          id="numHoles"
+                          className="input_basic"
+                        />
+                      </div>
+                    </div>
+                    <div className="mt-4 col-span-3">
+                      <label
+                        htmlFor="layoutDescription"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Layout Notes
+                      </label>
+                      <div className="mt-1">
+                        <textarea
+                          onChange={(e) => setLayoutDescription(e.target.value)}
+                          value={layoutDescription}
+                          id="layoutDescription"
+                          name="layoutDescription"
+                          rows={3}
+                          className="input_basic"
+                        />
+                      </div>
+                      <p className="mt-2 text-sm text-gray-500">
+                        Provide layout instructions to the players.
+                      </p>
+                    </div>
                   </>
                 ) : (
                   <Error message="No courses found!" />

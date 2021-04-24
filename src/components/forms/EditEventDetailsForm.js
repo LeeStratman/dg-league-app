@@ -4,27 +4,18 @@ import CourseDropdown from "./CourseDropdown";
 import useLeague from "../../hooks/queries/useLeague";
 import Error from "../../components/alerts/Error";
 import Loading from "../../components/alerts/Loading";
-import LayoutRadioGroup from "./LayoutRadioGroup";
 import { formatDate, prepareDate } from "../../utils/date";
 
 const EditEventDetailsForm = ({ event }) => {
   const league = useLeague(event.leagueId);
   const [name, setName] = useState(event.name);
   const [description, setDescription] = useState(event.description);
-  const [layoutName, setLayoutName] = useState(() =>
-    event.layout ? event.layout.name : ""
+  const [numHoles, setNumHoles] = useState(event.layout.numHoles);
+  const [layoutDescription, setLayoutDescription] = useState(
+    event.layout.description
   );
-  const [layoutDescription, setLayoutDescription] = useState(() =>
-    event.layout ? event.layout.description : ""
-  );
-  const [layout, setLayout] = useState(event.layout.tee_pos - 1);
-  const [course, setCourse] = useState(event.layout.courseId);
+  const [course, setCourse] = useState(event.layout.course);
   const [date, setDate] = useState(formatDate(event.date));
-
-  const handleCourseChange = (course) => {
-    setLayout(null);
-    setCourse(course.course_id);
-  };
 
   const updateEvent = useUpdateEvent();
 
@@ -38,10 +29,9 @@ const EditEventDetailsForm = ({ event }) => {
           description,
           date: prepareDate(date),
           layout: {
-            name: layoutName,
             description: layoutDescription,
-            tee_pos: layout + 1,
-            courseId: course,
+            numHoles: numHoles,
+            course,
           },
         });
       }}
@@ -131,25 +121,49 @@ const EditEventDetailsForm = ({ event }) => {
                 {league.isIdle ? null : league.data?.courses?.length > 0 ? (
                   <>
                     <CourseDropdown
-                      selected={league.data.courses.find(
-                        (crs) => crs.course_id === course
-                      )}
-                      setSelected={handleCourseChange}
+                      selected={course}
+                      setSelected={setCourse}
                       options={league.data.courses}
                     />
-                    {course ? (
-                      <div className="mt-4">
-                        <LayoutRadioGroup
-                          selected={layout}
-                          setSelected={setLayout}
-                          layouts={
-                            league.data.courses.find(
-                              (crs) => crs.course_id === course
-                            ).layouts
-                          }
+                    <div className="mt-4 col-span-3">
+                      <label
+                        htmlFor="numHoles"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Number of Holes
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          onChange={(e) => setNumHoles(e.target.value)}
+                          value={numHoles}
+                          type="number"
+                          name="numHoles"
+                          id="numHoles"
+                          className="input_basic"
                         />
                       </div>
-                    ) : null}
+                    </div>
+                    <div className="mt-4 col-span-3">
+                      <label
+                        htmlFor="layoutDescription"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Layout Notes
+                      </label>
+                      <div className="mt-1">
+                        <textarea
+                          onChange={(e) => setLayoutDescription(e.target.value)}
+                          value={layoutDescription}
+                          id="layoutDescription"
+                          name="layoutDescription"
+                          rows={3}
+                          className="input_basic"
+                        />
+                      </div>
+                      <p className="mt-2 text-sm text-gray-500">
+                        Provide layout instructions to the players.
+                      </p>
+                    </div>
                   </>
                 ) : (
                   <Error message="No courses found!" />
@@ -157,45 +171,6 @@ const EditEventDetailsForm = ({ event }) => {
                 {league.isFetching ? "Getting courses..." : null}
               </div>
             )}
-          </div>
-          <div className="col-span-3 sm:col-span-2">
-            <label
-              htmlFor="layoutName"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Layout Name
-            </label>
-            <div className="mt-1 rounded-md shadow-sm flex">
-              <input
-                onChange={(e) => setLayoutName(e.target.value)}
-                value={layoutName}
-                type="text"
-                name="layoutName"
-                id="layoutName"
-                className="input_basic"
-              />
-            </div>
-          </div>
-          <div className="col-span-3">
-            <label
-              htmlFor="layoutDescription"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Layout Notes
-            </label>
-            <div className="mt-1">
-              <textarea
-                onChange={(e) => setLayoutDescription(e.target.value)}
-                value={layoutDescription}
-                id="layoutDescription"
-                name="layoutDescription"
-                rows={3}
-                className="input_basic"
-              />
-            </div>
-            <p className="mt-2 text-sm text-gray-500">
-              Provide layout instructions to the players.
-            </p>
           </div>
         </div>
         <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
