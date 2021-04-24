@@ -16,7 +16,13 @@ const AddCourseItem = ({ course }) => {
           onClick={() =>
             addCourse.mutate({
               leagueId: leagueId,
-              courseId: course.course_id,
+              course: {
+                name: course.name,
+                city: course.city,
+                state: course.state,
+                zip: course.zip,
+                sourceId: course.course_id,
+              },
             })
           }
           className="block w-full focus:outline-none"

@@ -8,10 +8,10 @@ const useAddCourseToLeague = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
-    (ids) =>
+    (data) =>
       API.post(
-        `/leagues/${ids.leagueId}/add-course`,
-        { course: ids.courseId },
+        `/leagues/${data.leagueId}/add-course`,
+        { course: data.course },
         {
           headers: {
             Authorization: `Bearer ${token}`,
