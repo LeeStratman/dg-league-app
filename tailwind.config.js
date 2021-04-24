@@ -12,6 +12,9 @@ module.exports = {
           DEFAULT: "#00B5CC",
         },
         secondary: "#C1CD23",
+        "light-blue": colors.lightBlue,
+        teal: colors.teal,
+        rose: colors.rose,
       },
       outline: {
         primary: "2px solid #1ED3EA",
