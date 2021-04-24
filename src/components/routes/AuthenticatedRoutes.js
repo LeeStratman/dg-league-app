@@ -5,6 +5,7 @@ import Manage from "../../pages/authenticated/Manage";
 import Courses from "../../pages/authenticated/Courses";
 import Leagues from "../../pages/authenticated/Leagues";
 import CreateLeague from "../../pages/authenticated/CreateLeague";
+import Schedule from "../../pages/authenticated/Schedule";
 
 const AuthenticatedRoutes = () => (
   <Switch>
@@ -18,7 +19,7 @@ const AuthenticatedRoutes = () => (
       <Courses />
     </Route>
     <Route path="/schedule">
-      <Dashboard />
+      <Schedule />
     </Route>
     <Route path="/scorecards">
       <Dashboard />
