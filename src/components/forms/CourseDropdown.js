@@ -17,13 +17,13 @@ const CourseDropdown = ({
         <>
           <Listbox.Label className="sr-only">Change course</Listbox.Label>
           <div className="relative">
-            <div className="inline-flex shadow-sm rounded-md divide-x divide-indigo-600">
-              <div className="relative z-0 inline-flex shadow-sm rounded-md divide-x divide-indigo-600">
-                <div className="relative inline-flex items-center bg-indigo-500 py-2 pl-3 pr-4 border border-transparent rounded-l-md shadow-sm text-white">
+            <div className="inline-flex shadow-sm rounded-md divide-x divide-primary-400">
+              <div className="relative z-0 inline-flex shadow-sm rounded-md divide-x divide-primary-400">
+                <div className="relative inline-flex items-center bg-primary-400 py-2 pl-3 pr-4 border border-transparent rounded-l-md shadow-sm text-white">
                   <CheckIcon className="h-5 w-5" aria-hidden="true" />
                   <p className="ml-2.5 text-sm font-medium">{selected.name}</p>
                 </div>
-                <Listbox.Button className="relative inline-flex items-center bg-indigo-500 p-2 rounded-l-none rounded-r-md text-sm font-medium text-white hover:bg-indigo-600 focus:outline-none focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">
+                <Listbox.Button className="relative inline-flex items-center bg-primary p-2 rounded-l-none rounded-r-md text-sm font-medium text-white hover:bg-primary-400 focus:outline-none focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-primary-400">
                   <span className="sr-only">Change course</span>
                   <ChevronDownIcon
                     className="h-5 w-5 text-white"
@@ -46,10 +46,10 @@ const CourseDropdown = ({
               >
                 {options.map((option) => (
                   <Listbox.Option
-                    key={option.course_id}
+                    key={option._id}
                     className={({ active }) =>
                       classNames(
-                        active ? "text-white bg-indigo-500" : "text-gray-900",
+                        active ? "text-white bg-primary-400" : "text-gray-900",
                         "cursor-default select-none relative p-4 text-sm"
                       )
                     }
@@ -68,7 +68,7 @@ const CourseDropdown = ({
                           {selected ? (
                             <span
                               className={
-                                active ? "text-white" : "text-indigo-500"
+                                active ? "text-white" : "text-primary-400"
                               }
                             >
                               <CheckIcon
@@ -80,7 +80,7 @@ const CourseDropdown = ({
                         </div>
                         <p
                           className={classNames(
-                            active ? "text-indigo-200" : "text-gray-500",
+                            active ? "text-white" : "",
                             "mt-2"
                           )}
                         >
