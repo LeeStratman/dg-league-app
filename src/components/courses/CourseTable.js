@@ -39,7 +39,7 @@ const CourseTable = ({ courses }) => {
               <tbody>
                 {courses.map((course, personIdx) => (
                   <tr
-                    key={course.course_id}
+                    key={course._id}
                     className={personIdx % 2 === 0 ? "bg-white" : "bg-gray-50"}
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -61,7 +61,7 @@ const CourseTable = ({ courses }) => {
                             courseId: course.course_id,
                           })
                         }
-                        className="text-indigo-600 hover:text-indigo-900"
+                        className="text-primary hover:text-primary-400"
                       >
                         Remove
                       </button>
