@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useCreateEvent from "../../hooks/mutations/useCreateEvent";
 import useLeague from "../../hooks/queries/useLeague";
 import Error from "../../components/alerts/Error";
-import Loading from "../../components/alerts/Loading";
+import Info from "../alerts/Info";
 import CourseDropdown from "./CourseDropdown";
 import { prepareDate } from "../../utils/date";
 
@@ -111,7 +111,7 @@ const CreateEventForm = ({ leagueId }) => {
               Course
             </label>
             {league.isLoading ? (
-              <Loading />
+              <Info />
             ) : league.isError ? (
               <Error message={league.error.message} />
             ) : (

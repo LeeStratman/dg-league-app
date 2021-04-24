@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useUser from "../../hooks/queries/useUser";
-import Loading from "../../components/alerts/Loading";
+import Info from "../../components/alerts/Info";
 import Error from "../../components/alerts/Error";
 import OrganizedLeaguesTable from "../../components/OrganizedLeaguesTable";
 
@@ -28,7 +28,7 @@ const ManageLeagues = () => {
         </div>
         <div className="my-4">
           {user.isLoading ? (
-            <Loading />
+            <Info />
           ) : user.isError ? (
             <Error message="Unable to load your leagues." />
           ) : (

@@ -3,7 +3,7 @@ import useUpdateEvent from "../../hooks/mutations/useUpdateEvent";
 import CourseDropdown from "./CourseDropdown";
 import useLeague from "../../hooks/queries/useLeague";
 import Error from "../../components/alerts/Error";
-import Loading from "../../components/alerts/Loading";
+import Info from "../../components/alerts/Info";
 import { formatDate, prepareDate } from "../../utils/date";
 
 const EditEventDetailsForm = ({ event }) => {
@@ -113,7 +113,7 @@ const EditEventDetailsForm = ({ event }) => {
               Course
             </label>
             {league.isLoading ? (
-              <Loading />
+              <Info />
             ) : league.isError ? (
               <Error message={league.error.message} />
             ) : (

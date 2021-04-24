@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Loading from "../alerts/Loading";
+import Info from "../alerts/Info";
 import Error from "../alerts/Error";
 import useLeague from "../../hooks/queries/useLeague";
 import useJoinLeague from "../../hooks/mutations/useJoinLeague";
@@ -11,7 +11,7 @@ const SingleLeague = () => {
   const joinLeague = useJoinLeague(leagueId);
 
   return league.isLoading ? (
-    <Loading />
+    <Info />
   ) : league.isError ? (
     <Error message={league.error.message} />
   ) : (

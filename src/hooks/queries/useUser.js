@@ -16,7 +16,7 @@ const useUser = () => {
     },
     {
       refetchOnWindowFocus: true,
-      staleTime: 100000,
+      staleTime: 10000,
       enabled: token ? true : false,
       retry: 2,
     }

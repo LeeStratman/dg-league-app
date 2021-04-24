@@ -1,4 +1,4 @@
-import Loading from "../alerts/Loading";
+import Info from "../alerts/Info";
 import Error from "../alerts/Error";
 import LeagueItem from "./LeagueItem";
 import useLeagueSearch from "../../hooks/queries/useLeagueSearch";
@@ -7,7 +7,7 @@ const LeagueList = ({ name }) => {
   const leagues = useLeagueSearch(name);
 
   return leagues.isLoading ? (
-    <Loading />
+    <Info />
   ) : leagues.isError ? (
     <Error message={leagues.error.message} />
   ) : (

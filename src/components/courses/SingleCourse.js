@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Loading from "../alerts/Loading";
+import Info from "../alerts/Info";
 import Error from "../alerts/Error";
 import useCourse from "../../hooks/queries/useCourse";
 
@@ -9,7 +9,7 @@ const SingleCourse = () => {
   const course = useCourse(courseId);
 
   return course.isLoading ? (
-    <Loading />
+    <Info />
   ) : course.isError ? (
     <Error message={course.error.message} />
   ) : (

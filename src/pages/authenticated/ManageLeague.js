@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useLocation } from "react-router-dom";
-import Loading from "../../components/alerts/Loading";
+import Info from "../../components/alerts/Info";
 import Error from "../../components/alerts/Error";
 import useLeague from "../../hooks/queries/useLeague";
 import {
@@ -41,7 +41,7 @@ const ManageLeague = () => {
   ];
 
   return league.isLoading ? (
-    <Loading />
+    <Info />
   ) : league.isError ? (
     <Error message={league.error.message} />
   ) : (

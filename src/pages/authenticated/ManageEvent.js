@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useLocation } from "react-router-dom";
-import Loading from "../../components/alerts/Loading";
+import Info from "../../components/alerts/Info";
 import Error from "../../components/alerts/Error";
 import useEvent from "../../hooks/queries/useEvent";
 import { InformationCircleIcon } from "@heroicons/react/outline";
@@ -32,7 +32,7 @@ const ManageEvent = () => {
   ];
 
   return event.isLoading ? (
-    <Loading />
+    <Info />
   ) : event.isError ? (
     <Error message={event.error.message} />
   ) : (

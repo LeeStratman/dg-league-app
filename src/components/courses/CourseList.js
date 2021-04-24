@@ -1,4 +1,4 @@
-import Loading from "../alerts/Loading";
+import Info from "../alerts/Info";
 import Error from "../alerts/Error";
 import useCourseSearch from "../../hooks/queries/useCourseSearch";
 
@@ -6,7 +6,7 @@ const CourseList = ({ name, CourseComponent }) => {
   const courses = useCourseSearch(name);
 
   return courses.isLoading ? (
-    <Loading />
+    <Info />
   ) : courses.isError ? (
     <Error message={courses.error.message} />
   ) : (

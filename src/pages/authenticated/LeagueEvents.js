@@ -1,7 +1,7 @@
 import React from "react";
 import EventList from "../../components/events/EventsList";
 import useLeagueEvents from "../../hooks/queries/useLeagueEvents";
-import Loading from "../../components/alerts/Loading";
+import Info from "../../components/alerts/Info";
 import Error from "../../components/alerts/Error";
 import { Link } from "react-router-dom";
 
@@ -29,7 +29,7 @@ const LeagueEvents = ({ leagueId }) => {
         </div>
         <div className="my-4">
           {events.isLoading ? (
-            <Loading />
+            <Info />
           ) : events.isError ? (
             <Error message={events.error.message} />
           ) : (

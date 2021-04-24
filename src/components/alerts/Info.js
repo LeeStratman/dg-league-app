@@ -1,6 +1,6 @@
 import { InformationCircleIcon } from "@heroicons/react/solid";
 
-const Loading = () => {
+const Info = ({ message = "Loading..." }) => {
   return (
     <div className="rounded-md bg-blue-50 p-4">
       <div className="flex">
@@ -11,11 +11,11 @@ const Loading = () => {
           />
         </div>
         <div className="ml-3 flex-1 md:flex md:justify-between">
-          <p className="text-sm text-blue-700">Loading...</p>
+          <p className="text-sm text-blue-700">{message}</p>
         </div>
       </div>
     </div>
   );
 };
 
-export default Loading;
+export default Info;
