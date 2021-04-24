@@ -16,6 +16,12 @@ export const formatDate = (dateString) => {
   );
 };
 
+export const displayDate = (dateString) => {
+  let date = new Date(dateString);
+
+  return date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
+};
+
 export const prepareDate = (dateString) => {
   let [year, month, day] = dateString.split("-");
 
