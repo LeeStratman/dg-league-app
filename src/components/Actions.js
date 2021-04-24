@@ -1,39 +1,39 @@
 import React from "react";
 import SubTitle from "./SubTitle";
-
+import { Link } from "react-router-dom";
 import {
-  BadgeCheckIcon,
-  CashIcon,
-  ClockIcon,
-  UsersIcon,
+  PlusCircleIcon,
+  SearchIcon,
+  UserAddIcon,
+  ClipboardIcon,
 } from "@heroicons/react/outline";
 
 const actions = [
   {
     title: "Create a Scorecard",
     href: "#",
-    icon: ClockIcon,
+    icon: PlusCircleIcon,
     iconForeground: "text-teal-700",
     iconBackground: "bg-teal-50",
   },
   {
     title: "Find a Course",
-    href: "#",
-    icon: BadgeCheckIcon,
+    href: "/courses",
+    icon: SearchIcon,
     iconForeground: "text-purple-700",
     iconBackground: "bg-purple-50",
   },
   {
     title: "Join a League",
-    href: "#",
-    icon: UsersIcon,
+    href: "/leagues",
+    icon: UserAddIcon,
     iconForeground: "text-light-blue-700",
     iconBackground: "bg-light-blue-50",
   },
   {
     title: "Manage a League",
-    href: "#",
-    icon: CashIcon,
+    href: "/manage",
+    icon: ClipboardIcon,
     iconForeground: "text-yellow-700",
     iconBackground: "bg-yellow-50",
   },
@@ -76,11 +76,11 @@ const Actions = () => {
             </div>
             <div className="mt-8">
               <h3 className="text-lg font-medium">
-                <a href={action.href} className="focus:outline-none">
+                <Link to={action.href} className="focus:outline-none">
                   {/* Extend touch target to entire panel */}
                   <span className="absolute inset-0" aria-hidden="true" />
                   {action.title}
-                </a>
+                </Link>
               </h3>
               <p className="mt-2 text-sm text-gray-500">
                 Doloribus dolores nostrum quia qui natus officia quod et
