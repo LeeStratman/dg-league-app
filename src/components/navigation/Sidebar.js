@@ -17,6 +17,8 @@ import {
 } from "@heroicons/react/outline";
 import Logo from "../Logo";
 import Avatar from "../Avatar";
+import DropdownNavItem from "./DropdownNavItem";
+import NavItem from "./NavItem";
 
 const Sidebar = ({ logout, sidebarOpen, setSidebarOpen }) => {
   const { pathname } = useLocation();
@@ -60,9 +62,15 @@ const Sidebar = ({ logout, sidebarOpen, setSidebarOpen }) => {
     },
   ];
 
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
+  const getLeagueNav = (leagues) => {
+    return leagues.map((league) => {
+      return {
+        href: `/my-leagues/${league._id}`,
+        key: league._id,
+        name: league.name,
+      };
+    });
+  };
 
   return (
     <>
@@ -120,34 +128,22 @@ const Sidebar = ({ logout, sidebarOpen, setSidebarOpen }) => {
                 </div>
                 <nav className="mt-5 px-2 space-y-1">
                   {navigation.map((item) => (
-                    <Link
-                      onClick={() => setSidebarOpen(false)}
+                    <NavItem
                       key={item.name}
-                      to={item.href}
-                      className={classNames(
-                        item.current
-                          ? "bg-gray-900 text-white"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                      )}
-                    >
-                      <item.icon
-                        className={classNames(
-                          item.current
-                            ? "text-gray-300"
-                            : "text-gray-400 group-hover:text-gray-300",
-                          "mr-4 h-6 w-6"
-                        )}
-                        aria-hidden="true"
-                      />
-                      {item.name}
-                    </Link>
+                      item={{
+                        name: item.name,
+                        href: item.href,
+                        current: item.current,
+                        icon: item.icon,
+                      }}
+                      setSidebarOpen={setSidebarOpen}
+                    />
                   ))}
                   <Link
                     key="Logout"
                     to="/signin"
                     onClick={logout}
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                   >
                     <LogoutIcon
                       className="text-gray-400 group-hover:text-gray-300 mr-4 h-6 w-6"
@@ -156,22 +152,14 @@ const Sidebar = ({ logout, sidebarOpen, setSidebarOpen }) => {
                     Logout
                   </Link>
                   {user.data?.leagues && user.data.leagues?.length > 0 && (
-                    <div className="border-t border-color-white ">
-                      <p className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                        My Leagues
-                      </p>
-                      {user.data.leagues.map((league) => {
-                        return (
-                          <Link
-                            to={`/myleague/${league._id}`}
-                            key={league._id}
-                            className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                          >
-                            {league.name}
-                          </Link>
-                        );
-                      })}
-                    </div>
+                    <DropdownNavItem
+                      item={{
+                        name: "My Leagues",
+                        current: pathname === "/my-leagues" ? true : false,
+                        icon: UserGroupIcon,
+                      }}
+                      subitems={getLeagueNav(user.data.leagues)}
+                    />
                   )}
                 </nav>
               </div>
@@ -213,27 +201,16 @@ const Sidebar = ({ logout, sidebarOpen, setSidebarOpen }) => {
               </div>
               <nav className="mt-5 flex-1 px-2 bg-gray-800 space-y-1">
                 {navigation.map((item) => (
-                  <Link
+                  <NavItem
                     key={item.name}
-                    to={item.href}
-                    className={classNames(
-                      item.current
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                      "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                    )}
-                  >
-                    <item.icon
-                      className={classNames(
-                        item.current
-                          ? "text-gray-300"
-                          : "text-gray-400 group-hover:text-gray-300",
-                        "mr-3 h-6 w-6"
-                      )}
-                      aria-hidden="true"
-                    />
-                    {item.name}
-                  </Link>
+                    item={{
+                      name: item.name,
+                      href: item.href,
+                      current: item.current,
+                      icon: item.icon,
+                    }}
+                    setSidebarOpen={setSidebarOpen}
+                  />
                 ))}
                 <Link
                   key="Logout"
@@ -251,22 +228,14 @@ const Sidebar = ({ logout, sidebarOpen, setSidebarOpen }) => {
                 </Link>
 
                 {user.data?.leagues && user.data.leagues?.length > 0 && (
-                  <div className="border-t border-color-white">
-                    <p className="mt-2 text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                      My Leagues
-                    </p>
-                    {user.data.leagues.map((league) => {
-                      return (
-                        <Link
-                          to={`/myleague/${league._id}`}
-                          key={league._id}
-                          className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                        >
-                          {league.name}
-                        </Link>
-                      );
-                    })}
-                  </div>
+                  <DropdownNavItem
+                    item={{
+                      name: "My Leagues",
+                      current: pathname === "/my-leagues" ? true : false,
+                      icon: UserGroupIcon,
+                    }}
+                    subitems={getLeagueNav(user.data.leagues)}
+                  />
                 )}
               </nav>
             </div>
