@@ -15,7 +15,7 @@ const SecondaryMenu = ({ navigation }) => {
             to={item.href}
             className={classNames(
               item.current
-                ? "bg-gray-50 text-indigo-700 hover:text-indigo-700 hover:bg-white"
+                ? "bg-gray-50 text-primary hover:text-primary hover:bg-white"
                 : "text-gray-900 hover:text-gray-900 hover:bg-gray-50",
               "group rounded-md px-3 py-2 flex items-center text-sm font-medium"
             )}
@@ -24,7 +24,7 @@ const SecondaryMenu = ({ navigation }) => {
             <item.icon
               className={classNames(
                 item.current
-                  ? "text-indigo-500 group-hover:text-indigo-500"
+                  ? "text-primary-400 group-hover:text-primary-400"
                   : "text-gray-400 group-hover:text-gray-500",
                 "flex-shrink-0 -ml-1 mr-3 h-6 w-6"
               )}
