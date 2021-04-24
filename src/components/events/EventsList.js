@@ -1,5 +1,6 @@
 import { ChevronRightIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
+import { displayDate } from "../../utils/date";
 
 const EventList = ({ events }) => {
   return (
@@ -15,14 +16,16 @@ const EventList = ({ events }) => {
                 <div className="min-w-0 flex-1 flex items-center">
                   <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                     <div>
-                      <p className="text-sm font-medium text-indigo-600 truncate">
+                      <p className="text-sm font-medium truncate">
                         {event.name}
                       </p>
                     </div>
                     <div className="hidden md:block">
                       <div>
                         <p className="text-sm text-gray-900">
-                          <time dateTime={event.date}>{event.date}</time>
+                          <time dateTime={event.date}>
+                            {displayDate(event.date)}
+                          </time>
                         </p>
                       </div>
                     </div>

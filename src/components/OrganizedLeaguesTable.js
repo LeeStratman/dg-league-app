@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ChevronRightIcon, UserGroupIcon } from "@heroicons/react/solid";
 import Warning from "../components/alerts/Warning";
+import { displayDate } from "../utils/date";
 
 const OrganizedLeaguesTable = ({ leagues }) => {
   return leagues.length === 0 ? (
@@ -36,7 +37,7 @@ const OrganizedLeaguesTable = ({ leagues }) => {
                         <p className="text-sm text-gray-900">
                           Created{" "}
                           <time dateTime={league.createdAt}>
-                            {league.createdAt}
+                            {displayDate(league.createdAt)}
                           </time>
                         </p>
                       </div>
