@@ -9,7 +9,6 @@ const useLogin = () => {
     },
     {
       onSuccess: (data) => {
-        console.log("success", data);
         window.localStorage.setItem("dgleague", JSON.stringify(data.token));
       },
     }

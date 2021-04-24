@@ -21,6 +21,7 @@ const useJoinLeague = (leagueId) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("user");
+        queryClient.invalidateQueries(["league", leagueId]);
       },
     }
   );

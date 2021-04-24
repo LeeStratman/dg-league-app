@@ -3,17 +3,18 @@ import { useParams } from "react-router-dom";
 import Info from "../alerts/Info";
 import Error from "../alerts/Error";
 import useLeague from "../../hooks/queries/useLeague";
-import useJoinLeague from "../../hooks/mutations/useJoinLeague";
+import JoinButton from "../JoinButton";
 
 const SingleLeague = () => {
   const { leagueId } = useParams();
   const league = useLeague(leagueId);
-  const joinLeague = useJoinLeague(leagueId);
 
   return league.isLoading ? (
     <Info />
   ) : league.isError ? (
-    <Error message={league.error.message} />
+    <div className="mt-2">
+      <Error message="Failed to load league. Try searching for another league." />
+    </div>
   ) : (
     <div>
       {league.data ? (
@@ -29,14 +30,7 @@ const SingleLeague = () => {
                 }`}
               </p>
             </div>
-            <div className="w-32">
-              <button
-                onClick={joinLeague.mutate}
-                className="w-full btn_primary"
-              >
-                Join
-              </button>
-            </div>
+            <JoinButton leagueId={leagueId} />
           </div>
           <div className="mt-5 border-t border-gray-200">
             <dl className="sm:divide-y sm:divide-gray-200">
@@ -55,14 +49,14 @@ const SingleLeague = () => {
               <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt className="text-sm font-medium text-gray-500">Members</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {league.data.players.length}
+                  {league.data?.players ? league.data.players.length : "0"}
                 </dd>
               </div>
             </dl>
           </div>
         </div>
       ) : (
-        <div>League not found</div>
+        <Error message="League not found." />
       )}
       {league.isFetching ? "Updating..." : null}
     </div>

@@ -26,10 +26,9 @@ const useLeague = (leagueId) => {
     },
     {
       refetchOnWindowFocus: false,
-      // staleTime: Infinity,
-      // cacheTime: Infinity,
+      staleTime: 100000,
       enabled: leagueId && token ? true : false,
-      retry: 0,
+      retry: 1,
       retryDelay: 1000,
     }
   );

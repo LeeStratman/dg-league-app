@@ -8,7 +8,7 @@ import EventScheduleTable from "../../components/events/EventScheduleTable";
 
 const Dashboard = () => {
   const user = useUser();
-  console.log(user);
+
   return (
     <Content title="Dashboard">
       <Actions />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SearchIcon } from "@heroicons/react/solid";
 
-const Search = ({ onSearch }) => {
+const Search = ({ onSearch, placeholder = "Search" }) => {
   const [query, setQuery] = useState("");
   return (
     <div className="flex-1 flex items-center justify-center">
@@ -22,7 +22,7 @@ const Search = ({ onSearch }) => {
             id="search"
             name="search"
             className="input_basic pl-10 pr-3 leading-5"
-            placeholder="Search"
+            placeholder={placeholder}
             type="search"
           />
         </div>

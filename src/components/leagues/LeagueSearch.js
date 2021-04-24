@@ -9,7 +9,7 @@ const LeagueSearch = () => {
 
   return (
     <>
-      <Search onSearch={onSearch} />
+      <Search onSearch={onSearch} placeholder="Search leagues..." />
       <LeagueList name={name} />
     </>
   );
