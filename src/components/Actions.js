@@ -1,5 +1,4 @@
 import React from "react";
-import SubTitle from "./SubTitle";
 import { Link } from "react-router-dom";
 import {
   PlusCircleIcon,
@@ -7,6 +6,7 @@ import {
   UserAddIcon,
   ClipboardIcon,
 } from "@heroicons/react/outline";
+import SubHeader from "./SubHeader";
 
 const actions = [
   {
@@ -46,8 +46,8 @@ function classNames(...classes) {
 const Actions = () => {
   return (
     <>
-      <SubTitle title="Quick Actions" />
-      <div className="rounded-lg bg-gray-200 overflow-hidden shadow divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px">
+      <SubHeader title="Quick Actions" />
+      <div className="mt-4 rounded-lg bg-gray-200 overflow-hidden shadow divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px">
         {actions.map((action, actionIdx) => (
           <div
             key={action.title}
