@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import ManageLeague from "../../pages/authenticated/ManageLeague";
-import ManageLeagues from "../leagues/ManageLeagues";
+import ManageLeagues from "../../pages/authenticated/ManageLeagues";
 import ManageEvent from "../../pages/authenticated/ManageEvent";
 
 const ManageRoutes = () => {

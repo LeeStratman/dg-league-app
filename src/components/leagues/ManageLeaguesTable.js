@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { ChevronRightIcon, UserGroupIcon } from "@heroicons/react/solid";
-import Warning from "../components/alerts/Warning";
-import { displayDate } from "../utils/date";
+import Info from "../alerts/Info";
+import { displayDate } from "../../utils/date";
 
-const OrganizedLeaguesTable = ({ leagues }) => {
+const ManageLeaguesTable = ({ leagues }) => {
   return leagues.length === 0 ? (
-    <Warning message="You currently do not manage any leagues." />
+    <Info message="You currently do not manage any leagues." />
   ) : (
     <div className="bg-white shadow overflow-hidden sm:rounded-md">
       <ul className="divide-y divide-gray-200">
@@ -59,4 +59,4 @@ const OrganizedLeaguesTable = ({ leagues }) => {
   );
 };
 
-export default OrganizedLeaguesTable;
+export default ManageLeaguesTable;
