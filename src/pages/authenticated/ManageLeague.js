@@ -26,10 +26,10 @@ const ManageLeague = () => {
     },
     {
       name: "Courses",
-      href: `/manage/${leagueId}/add-course`,
+      href: `/manage/${leagueId}/courses`,
       icon: LocationMarkerIcon,
       current:
-        location.pathname === `/manage/${leagueId}/add-course` ? true : false,
+        location.pathname === `/manage/${leagueId}/courses` ? true : false,
     },
     {
       name: "Events",
