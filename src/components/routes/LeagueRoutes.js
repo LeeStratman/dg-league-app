@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Info from "../alerts/Info";
-import SingleLeague from "../leagues/SingleLeague";
+import SingleLeague from "../../pages/authenticated/SingleLeague";
 
 const LeagueRoutes = () => {
   return (

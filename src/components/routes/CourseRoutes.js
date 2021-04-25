@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import SingleCourse from "../../components/courses/SingleCourse";
+import SingleCourse from "../../pages/authenticated/SingleCourse";
 import Info from "../alerts/Info";
 
 const CourseRoutes = () => (

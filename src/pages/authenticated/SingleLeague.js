@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Info from "../alerts/Info";
-import Error from "../alerts/Error";
+import Info from "../../components/alerts/Info";
+import Error from "../../components/alerts/Error";
 import useLeague from "../../hooks/queries/useLeague";
-import JoinButton from "../JoinButton";
+import JoinButton from "../../components/JoinButton";
 
 const SingleLeague = () => {
   const { leagueId } = useParams();
