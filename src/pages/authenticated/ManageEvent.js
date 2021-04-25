@@ -3,7 +3,7 @@ import { useParams, useLocation } from "react-router-dom";
 import Info from "../../components/alerts/Info";
 import Error from "../../components/alerts/Error";
 import useEvent from "../../hooks/queries/useEvent";
-import { InformationCircleIcon } from "@heroicons/react/outline";
+import { InformationCircleIcon, ChartBarIcon } from "@heroicons/react/outline";
 import WithSecondaryMenu from "../../components/content/WithSecondaryMenu";
 import ManageEventRoutes from "../../components/routes/ManageEventRoutes";
 import SubTitle from "../../components/SubTitle";
@@ -26,7 +26,7 @@ const ManageEvent = () => {
     {
       name: "Results",
       href: `/manage/${leagueId}/events/${eventId}/results`,
-      icon: InformationCircleIcon,
+      icon: ChartBarIcon,
       current:
         location.pathname === `/manage/${leagueId}/events/${eventId}/results`
           ? true

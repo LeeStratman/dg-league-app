@@ -7,6 +7,7 @@ import { InformationCircleIcon } from "@heroicons/react/outline";
 import WithSecondaryMenu from "../../components/content/WithSecondaryMenu";
 import SubTitle from "../../components/SubTitle";
 import MyEventRoutes from "../../components/routes/MyEventRoutes";
+import { ChartBarIcon } from "@heroicons/react/solid";
 
 const MyEvent = () => {
   const { leagueId, eventId } = useParams();
@@ -26,7 +27,7 @@ const MyEvent = () => {
     {
       name: "Results",
       href: `/my-leagues/${leagueId}/events/${eventId}/results`,
-      icon: InformationCircleIcon,
+      icon: ChartBarIcon,
       current:
         location.pathname ===
         `/my-leagues/${leagueId}/events/${eventId}/results`
