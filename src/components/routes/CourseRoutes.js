@@ -1,13 +1,19 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import SingleCourse from "../../components/courses/SingleCourse";
+import Info from "../alerts/Info";
 
 const CourseRoutes = () => (
   <Switch>
-    <Route path="/courses/:courseId" exact component={SingleCourse} />
-    <Route path="*" component={() => <div>No course selected</div>} />
+    <Route path="/courses/:courseId" exact>
+      <SingleCourse />
+    </Route>
     <Route path="*">
-      <Redirect to="/courses" />
+      <Info
+        message="
+          No course selected. To find a course, please enter a name in the
+            searchbox."
+      />
     </Route>
   </Switch>
 );
