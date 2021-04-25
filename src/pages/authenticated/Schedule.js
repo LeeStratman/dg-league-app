@@ -5,6 +5,7 @@ import useUser from "../../hooks/queries/useUser";
 
 const Schedule = () => {
   const user = useUser();
+  console.log(user);
   return (
     <>
       <Content title="Schedule">
@@ -14,7 +15,10 @@ const Schedule = () => {
         ) : user.isError ? (
           "Error!"
         ) : user.isSuccess ? (
-          <EventScheduleTable events={user.data.events} />
+          <EventScheduleTable
+            events={user.data.upcomingEvents}
+            title="Upcoming Events"
+          />
         ) : (
           "Update user"
         )}
