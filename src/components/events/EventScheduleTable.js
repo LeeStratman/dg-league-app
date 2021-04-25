@@ -2,15 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { displayDate } from "../../utils/date";
 import Info from "../alerts/Info";
-import SubTitle from "../SubTitle";
 
-const EventScheduleTable = ({ events, title = "Events" }) => {
+const EventScheduleTable = ({ events }) => {
   return (
     <>
       <div className="mt-4 flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <SubTitle title={title} />
             {events.length > 0 ? (
               <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200">
