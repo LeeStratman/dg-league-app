@@ -3,7 +3,7 @@ import { ChevronRightIcon, UserGroupIcon } from "@heroicons/react/solid";
 import Info from "../alerts/Info";
 import { displayDate } from "../../utils/date";
 
-const ManageLeaguesTable = ({ leagues }) => {
+const LeaguesTable = ({ leagues, urlPrefix = "my-leagues" }) => {
   return leagues.length === 0 ? (
     <Info message="You currently do not manage any leagues." />
   ) : (
@@ -12,7 +12,7 @@ const ManageLeaguesTable = ({ leagues }) => {
         {leagues.map((league) => (
           <li key={league._id}>
             <Link
-              to={`/manage/${league._id}`}
+              to={`/${urlPrefix}/${league._id}`}
               className="block hover:bg-gray-50"
             >
               <div className="flex items-center px-4 py-4 sm:px-6">
@@ -59,4 +59,4 @@ const ManageLeaguesTable = ({ leagues }) => {
   );
 };
 
-export default ManageLeaguesTable;
+export default LeaguesTable;

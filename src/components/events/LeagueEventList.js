@@ -2,14 +2,14 @@ import { ChevronRightIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 import { displayDate } from "../../utils/date";
 
-const LeagueEventList = ({ leagueId, events }) => {
+const LeagueEventList = ({ leagueId, events, urlPrefix = "my-leagues" }) => {
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-md">
       <ul className="divide-y divide-gray-200">
         {events.map((event) => (
           <li key={event._id}>
             <Link
-              to={`/manage/${leagueId}/events/${event._id}`}
+              to={`/${urlPrefix}/${leagueId}/events/${event._id}`}
               className="block hover:bg-gray-50"
             >
               <div className="flex items-center px-4 py-4 sm:px-6">

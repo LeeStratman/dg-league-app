@@ -1,5 +1,4 @@
 import { useQuery } from "react-query";
-import { CancelToken } from "axios";
 import API from "../../utils/api";
 import { getTokenFromLocalStorage } from "../../redux/auth/thunks";
 
@@ -9,20 +8,11 @@ function useLeagueEvents(leagueId) {
   return useQuery(
     ["events", leagueId],
     () => {
-      const source = CancelToken.source();
-
-      const promise = API.get(`/leagues/${String(leagueId)}/events`, {
-        cancelToken: source.token,
+      return API.get(`/leagues/${String(leagueId)}/events`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => res.data);
-
-      promise.cancel = () => {
-        source.cancel("Query was cancelled by React Query");
-      };
-
-      return promise;
     },
     {
       refetchOnWindowFocus: false,

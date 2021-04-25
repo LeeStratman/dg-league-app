@@ -3,9 +3,8 @@ import LeagueEventList from "../../components/events/LeagueEventList";
 import useLeagueEvents from "../../hooks/queries/useLeagueEvents";
 import Info from "../../components/alerts/Info";
 import Error from "../../components/alerts/Error";
-import { Link } from "react-router-dom";
 
-const EditLeagueEvents = ({ leagueId }) => {
+const MyLeagueEvents = ({ leagueId }) => {
   const events = useLeagueEvents(leagueId);
 
   return (
@@ -17,15 +16,6 @@ const EditLeagueEvents = ({ leagueId }) => {
               Events
             </h3>
           </div>
-          <div className="ml-4 mt-2 flex-shrink-0">
-            <Link
-              to={`/manage/${leagueId}/create-event`}
-              type="button"
-              className="relative inline-flex items-center btn_primary"
-            >
-              Create New Event
-            </Link>
-          </div>
         </div>
         <div className="my-4">
           {events.isLoading ? (
@@ -35,11 +25,7 @@ const EditLeagueEvents = ({ leagueId }) => {
           ) : (
             <div className="mt-2">
               {events.isIdle ? null : events.data?.length > 0 ? (
-                <LeagueEventList
-                  leagueId={leagueId}
-                  events={events.data}
-                  urlPrefix="manage"
-                />
+                <LeagueEventList leagueId={leagueId} events={events.data} />
               ) : (
                 <Error message="This league has no events." />
               )}
@@ -52,4 +38,4 @@ const EditLeagueEvents = ({ leagueId }) => {
   );
 };
 
-export default EditLeagueEvents;
+export default MyLeagueEvents;

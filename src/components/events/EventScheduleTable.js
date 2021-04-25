@@ -26,6 +26,12 @@ const EventScheduleTable = ({ events, title = "Events" }) => {
                         scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
+                        Course
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
                         Date
                       </th>
                       <th scope="col" className="relative px-6 py-3">
@@ -44,12 +50,17 @@ const EventScheduleTable = ({ events, title = "Events" }) => {
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           {event.name}
                         </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {event.layout?.course?.name
+                            ? event.layout.course.name
+                            : ""}
+                        </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {displayDate(event.date)}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <Link
-                            to="#"
+                            to={`/my-leagues/${event.leagueId}/events/${event._id}`}
                             className="text-primary hover:text-primary-400"
                           >
                             View
@@ -62,7 +73,7 @@ const EventScheduleTable = ({ events, title = "Events" }) => {
               </div>
             ) : (
               <div className="mt-2">
-                <Info message="No upcoming events." />
+                <Info message="There are currently no events." />
               </div>
             )}
           </div>
