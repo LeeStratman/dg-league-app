@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { displayDate } from "../../utils/date";
 import Info from "../alerts/Info";
 
-const EventScheduleTable = ({ events }) => {
+const EventScheduleTable = ({ events = [] }) => {
   return (
     <>
       <div className="mt-4 flex flex-col">

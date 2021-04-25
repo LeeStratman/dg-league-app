@@ -18,7 +18,7 @@ const Dashboard = () => {
       <SubContent>
         <SubHeader title="Upcoming Events" />
         <ServerContent content={user}>
-          <EventScheduleTable events={user.data.upcomingEvents} />
+          <EventScheduleTable events={user.data?.upcomingEvents} />
         </ServerContent>
       </SubContent>
     </Content>
