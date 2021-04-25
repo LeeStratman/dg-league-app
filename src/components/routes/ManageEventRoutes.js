@@ -5,8 +5,8 @@ import EditEventDetails from "../../pages/authenticated/EditEventDetails";
 const ManageEventRoutes = ({ event }) => {
   return (
     <Switch>
-      <Route path="/manage/events/:eventId/results" exact></Route>
-      <Route path="/manage/events/:eventId">
+      <Route path="/manage/:leagueId/events/:eventId/results" exact></Route>
+      <Route path="/manage/:leagueId/events/:eventId">
         <EditEventDetails event={event} />
       </Route>
     </Switch>

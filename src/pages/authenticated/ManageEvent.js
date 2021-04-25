@@ -16,16 +16,19 @@ const ManageEvent = () => {
   const navigation = [
     {
       name: "Details",
-      href: `/manage/events/${eventId}`,
+      href: `/manage/${leagueId}/events/${eventId}`,
       icon: InformationCircleIcon,
-      current: location.pathname === `/manage/events/${eventId}` ? true : false,
+      current:
+        location.pathname === `/manage/${leagueId}/events/${eventId}`
+          ? true
+          : false,
     },
     {
       name: "Results",
-      href: `/manage/events/${eventId}/results`,
+      href: `/manage/${leagueId}/events/${eventId}/results`,
       icon: InformationCircleIcon,
       current:
-        location.pathname === `/manage/events/${eventId}/results`
+        location.pathname === `/manage/${leagueId}/events/${eventId}/results`
           ? true
           : false,
     },

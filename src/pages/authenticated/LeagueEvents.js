@@ -1,5 +1,5 @@
 import React from "react";
-import EventList from "../../components/events/EventsList";
+import LeagueEventList from "../../components/events/LeagueEventList";
 import useLeagueEvents from "../../hooks/queries/useLeagueEvents";
 import Info from "../../components/alerts/Info";
 import Error from "../../components/alerts/Error";
@@ -35,7 +35,7 @@ const LeagueEvents = ({ leagueId }) => {
           ) : (
             <div className="mt-2">
               {events.isIdle ? null : events.data?.length > 0 ? (
-                <EventList events={events.data} />
+                <LeagueEventList leagueId={leagueId} events={events.data} />
               ) : (
                 <Error message="This league has no events." />
               )}

@@ -7,9 +7,15 @@ import ManageEvent from "../../pages/authenticated/ManageEvent";
 const ManageRoutes = () => {
   return (
     <Switch>
-      <Route path="/manage/events/:eventId" exact component={ManageEvent} />
-      <Route path="/manage/:leagueId" component={ManageLeague} />
-      <Route path="*" component={ManageLeagues} />
+      <Route path="/manage/:leagueId/events/:eventId" exact>
+        <ManageEvent />
+      </Route>
+      <Route path="/manage/:leagueId">
+        <ManageLeague />
+      </Route>
+      <Route path="/manage">
+        <ManageLeagues />
+      </Route>
     </Switch>
   );
 };
