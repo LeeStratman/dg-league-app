@@ -10,7 +10,7 @@ const CourseSearch = () => {
 
   return (
     <>
-      <Search onSearch={onSearch} />
+      <Search onSearch={onSearch} placeholder="Search courses..." />
       <CourseList name={query} CourseComponent={CourseItem} />
     </>
   );
