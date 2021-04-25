@@ -1,13 +1,13 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Info from "../alerts/Info";
-import SingleLeague from "../../pages/authenticated/SingleLeague";
+import JoinLeague from "../../pages/authenticated/JoinLeague";
 
 const LeagueRoutes = () => {
   return (
     <Switch>
       <Route path="/leagues/:leagueId" exact>
-        <SingleLeague />
+        <JoinLeague />
       </Route>
       <Route
         path="*"
