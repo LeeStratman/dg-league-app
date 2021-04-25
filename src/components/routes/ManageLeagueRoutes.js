@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import LeagueEvents from "../../pages/authenticated/LeagueEvents";
+import EditLeagueEvents from "../../pages/authenticated/EditLeagueEvents";
 import EditLeagueCourses from "../../pages/authenticated/EditLeagueCourses";
 import CreateEvent from "../../pages/authenticated/CreateEvent";
 import EditLeagueDetails from "../../pages/authenticated/EditLeagueDetails";
@@ -12,7 +12,7 @@ const ManageLeagueRoutes = ({ league }) => {
         <EditLeagueCourses league={league} />
       </Route>
       <Route path="/manage/:leagueId/events">
-        <LeagueEvents leagueId={league._id} />
+        <EditLeagueEvents leagueId={league._id} />
       </Route>
       <Route path="/manage/:leagueId/create-event">
         <CreateEvent leagueId={league._id} />

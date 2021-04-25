@@ -5,7 +5,7 @@ import Info from "../../components/alerts/Info";
 import Error from "../../components/alerts/Error";
 import { Link } from "react-router-dom";
 
-const LeagueEvents = ({ leagueId }) => {
+const EditLeagueEvents = ({ leagueId }) => {
   const events = useLeagueEvents(leagueId);
 
   return (
@@ -48,4 +48,4 @@ const LeagueEvents = ({ leagueId }) => {
   );
 };
 
-export default LeagueEvents;
+export default EditLeagueEvents;
