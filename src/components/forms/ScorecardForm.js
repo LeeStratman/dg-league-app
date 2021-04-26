@@ -42,43 +42,45 @@ const ScorecardForm = ({ scorecard }) => {
         <div className="bg-white py-6 px-4 space-y-6 sm:p-6">
           <div>
             <h3 className="text-lg leading-6 font-medium text-gray-900">
-              Scorecard - Event Name
+              {`Scorecard - ${scorecard.event.name}`}
             </h3>
-            <p className="mt-1 text-sm text-gray-500">Layout Information</p>
+            <p className="mt-1 text-sm text-gray-500">{`${scorecard.event.layout.course.name} - ${scorecard.event.layout.description}`}</p>
+            <p className="mt-1 text-sm text-gray-500">{`${scorecard.event.layout.numHoles}`}</p>
           </div>
 
           {holes.map((hole, index) => (
-            <>
-              <div className="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
-                <h2>{`Hole ${index + 1}`}</h2>
-                {scorecard.players.map((player) => (
-                  <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                    >
-                      {`${player.firstName} ${player.lastName}`}
-                    </label>
-                    <div className="mt-1 rounded-md shadow-sm flex">
-                      <input
-                        onChange={(e) =>
-                          setScores({
-                            hole: index,
-                            value: e.target.value,
-                            player: player._id,
-                          })
-                        }
-                        value={getPlayerHoleScore(player._id, index + 1)}
-                        type="number"
-                        name="name"
-                        id="name"
-                        className="input_basic"
-                      />
-                    </div>
+            <div key={index} className="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
+              <h2>{`Hole ${index + 1}`}</h2>
+              {scorecard.players.map((player) => (
+                <div
+                  key={player._id}
+                  className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-0"
+                >
+                  <label
+                    htmlFor={`score-${player._id}-${index}`}
+                    className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  >
+                    {`${player.firstName} ${player.lastName}`}
+                  </label>
+                  <div className="mt-1 rounded-md shadow-sm flex">
+                    <input
+                      onChange={(e) =>
+                        setScores({
+                          hole: index,
+                          value: e.target.value,
+                          player: player._id,
+                        })
+                      }
+                      value={getPlayerHoleScore(player._id, index + 1)}
+                      type="number"
+                      name={`score-${player._id}-${index}`}
+                      id={`score-${player._id}-${index}`}
+                      className="input_basic"
+                    />
                   </div>
-                ))}
-              </div>
-            </>
+                </div>
+              ))}
+            </div>
           ))}
         </div>
         <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">

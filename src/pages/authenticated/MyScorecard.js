@@ -19,10 +19,6 @@ const MyScorecard = () => {
       {scorecard.isIdle ? null : scorecard.data ? (
         <>
           <SubTitle title="My Scorecard" />
-          <p>{scorecard.data.event.name}</p>
-          <p>{scorecard.data.event.layout.name}</p>
-          <p>{scorecard.data.event.layout.numHoles}</p>
-          <p>{scorecard.data.event.layout.course.name}</p>
           <ScorecardForm scorecard={scorecard.data} />
         </>
       ) : (
