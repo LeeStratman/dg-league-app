@@ -7,6 +7,7 @@ import Leagues from "../../pages/authenticated/Leagues";
 import CreateLeague from "../../pages/authenticated/CreateLeague";
 import Schedule from "../../pages/authenticated/Schedule";
 import MyLeaguesWrapper from "../../pages/authenticated/MyLeaguesWrapper";
+import CreateScorecard from "../../pages/authenticated/CreateScorecard";
 
 const AuthenticatedRoutes = () => (
   <Switch>
@@ -33,6 +34,9 @@ const AuthenticatedRoutes = () => (
     </Route>
     <Route path="/create-league" exact>
       <CreateLeague />
+    </Route>
+    <Route path="/create-scorecard" exact>
+      <CreateScorecard />
     </Route>
     <Route path="/my-leagues">
       <MyLeaguesWrapper />

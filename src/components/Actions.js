@@ -11,7 +11,7 @@ import SubHeader from "./SubHeader";
 const actions = [
   {
     title: "Create a Scorecard",
-    href: "#",
+    href: "/create-scorecard",
     icon: PlusCircleIcon,
     iconForeground: "text-teal-700",
     iconBackground: "bg-teal-50",
