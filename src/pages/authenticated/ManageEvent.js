@@ -1,12 +1,11 @@
 import React from "react";
 import { useParams, useLocation } from "react-router-dom";
-import Info from "../../components/alerts/Info";
-import Error from "../../components/alerts/Error";
 import useEvent from "../../hooks/queries/useEvent";
 import { InformationCircleIcon, ChartBarIcon } from "@heroicons/react/outline";
 import WithSecondaryMenu from "../../components/content/WithSecondaryMenu";
 import ManageEventRoutes from "../../components/routes/ManageEventRoutes";
 import SubTitle from "../../components/SubTitle";
+import ServerContent from "../../components/content/ServerContent";
 
 const ManageEvent = () => {
   const { leagueId, eventId } = useParams();
@@ -34,24 +33,13 @@ const ManageEvent = () => {
     },
   ];
 
-  return event.isLoading ? (
-    <Info />
-  ) : event.isError ? (
-    <Error message={event.error.message} />
-  ) : (
-    <div>
-      {event.isIdle ? null : event.data ? (
-        <>
-          <SubTitle title={event.data.name} />
-          <WithSecondaryMenu navigation={navigation}>
-            <ManageEventRoutes event={event.data} />
-          </WithSecondaryMenu>
-        </>
-      ) : (
-        <Error message="League not found." />
-      )}
-      {event.isFetching ? "Updating..." : null}
-    </div>
+  return (
+    <ServerContent content={event}>
+      <SubTitle title={event.data?.name} />
+      <WithSecondaryMenu navigation={navigation}>
+        <ManageEventRoutes event={event.data} />
+      </WithSecondaryMenu>
+    </ServerContent>
   );
 };
 

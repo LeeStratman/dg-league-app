@@ -1,7 +1,5 @@
 import React from "react";
 import { useParams, useLocation } from "react-router-dom";
-import Info from "../../components/alerts/Info";
-import Error from "../../components/alerts/Error";
 import useLeague from "../../hooks/queries/useLeague";
 import {
   InformationCircleIcon,
@@ -11,6 +9,7 @@ import {
 import WithSecondaryMenu from "../../components/content/WithSecondaryMenu";
 import ManageLeagueRoutes from "../../components/routes/ManageLeagueRoutes";
 import SubTitle from "../../components/SubTitle";
+import ServerContent from "../../components/content/ServerContent";
 
 const ManageLeague = () => {
   const { leagueId } = useParams();
@@ -40,24 +39,13 @@ const ManageLeague = () => {
     },
   ];
 
-  return league.isLoading ? (
-    <Info />
-  ) : league.isError ? (
-    <Error message={league.error.message} />
-  ) : (
-    <div>
-      {league.isIdle ? null : league.data ? (
-        <>
-          <SubTitle title={league.data.name} />
-          <WithSecondaryMenu navigation={navigation}>
-            <ManageLeagueRoutes league={league.data} />
-          </WithSecondaryMenu>
-        </>
-      ) : (
-        <Error message="League not found." />
-      )}
-      {league.isFetching ? "Updating..." : null}
-    </div>
+  return (
+    <ServerContent content={league}>
+      <SubTitle title={league.data?.name} />
+      <WithSecondaryMenu navigation={navigation}>
+        <ManageLeagueRoutes league={league.data} />
+      </WithSecondaryMenu>
+    </ServerContent>
   );
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import Info from "../../components/alerts/Info";
 import Error from "../../components/alerts/Error";
 
-const EditLeagueEvents = ({ content, children }) => {
+const ServerContent = ({ content, children }) => {
   return (
     <div className="my-4">
       {content.isLoading ? (
@@ -19,4 +19,4 @@ const EditLeagueEvents = ({ content, children }) => {
   );
 };
 
-export default EditLeagueEvents;
+export default ServerContent;
