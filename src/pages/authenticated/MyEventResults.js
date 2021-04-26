@@ -1,5 +1,14 @@
 import React from "react";
+import ResultsTable from "../../components/ResultsTable";
 
-const MyEventResults = () => <div>My Event Results</div>;
+// TODO: Eventually only show completed scorecards.
+const MyEventResults = ({ event }) => {
+  return (
+    <ResultsTable
+      scorecards={event.scorecards}
+      numHoles={event.layout.numHoles}
+    />
+  );
+};
 
 export default MyEventResults;

@@ -14,7 +14,7 @@ const MyLeaguesRoutes = () => {
       >
         <MyScorecard />
       </Route>
-      <Route path="/my-leagues/:leagueId/events/:eventId" exact>
+      <Route path="/my-leagues/:leagueId/events/:eventId">
         <MyEvent />
       </Route>
       <Route path="/my-leagues/:leagueId">
