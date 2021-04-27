@@ -166,7 +166,7 @@ const EditEventDetailsForm = ({ event }) => {
                     </div>
                   </>
                 ) : (
-                  <Error message="No courses found!" />
+                  <Info message="No Course Found!" />
                 )}
                 {league.isFetching ? "Getting courses..." : null}
               </div>
