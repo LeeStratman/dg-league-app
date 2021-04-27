@@ -36,6 +36,15 @@ const AddCourseItem = ({ course }) => {
           </div>
           <p className="text-sm text-gray-500 text-left truncate">{`${course.city}, ${course.state} ${course.zipcode}`}</p>
           <p className="text-sm text-gray-500 text-left truncate">{`Holes: ${course.holes}`}</p>
+          <p className="btn_primary text-left inline-block">
+            {addCourse.isLoading
+              ? "Adding..."
+              : addCourse.isError
+              ? "Error!"
+              : addCourse.isSuccess
+              ? "Added!"
+              : "Add Course"}
+          </p>
         </button>
       </div>
     </div>
