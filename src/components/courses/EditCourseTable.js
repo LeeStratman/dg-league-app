@@ -54,7 +54,7 @@ const EditCourseTable = ({ courses }) => {
                           onClick={() =>
                             removeCourse.mutate({
                               leagueId,
-                              courseId: course.course_id,
+                              courseId: course._id,
                             })
                           }
                           className="text-primary hover:text-primary-400"
