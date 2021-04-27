@@ -18,7 +18,7 @@ const useScorecard = (eventId, scorecardId) => {
       ).then((res) => res.data);
     },
     {
-      refetchOnWindowFocus: true,
+      refetchOnWindowFocus: false,
       enabled: eventId && scorecardId && token ? true : false,
       retry: 3,
       retryDelay: 1000,
