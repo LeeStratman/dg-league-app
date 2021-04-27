@@ -23,9 +23,6 @@ const AuthenticatedRoutes = () => (
     <Route path="/schedule">
       <Schedule />
     </Route>
-    <Route path="/scorecards">
-      <Dashboard />
-    </Route>
     <Route path="/manage">
       <Manage />
     </Route>
