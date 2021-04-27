@@ -1,10 +1,14 @@
 import React from "react";
 import { useTable, useSortBy } from "react-table";
+import Info from "./alerts/Info";
 
 const ResultsTable = ({ scorecards, numHoles }) => {
   const data = React.useMemo(() => {
     let scoreData = [];
     scorecards.forEach((card) => {
+      if (card.status === "pending") {
+        return;
+      }
       const scores = card.scores.map((score) => {
         let total = 0;
         const holes = score.holes.reduce((acc, hole, index) => {
@@ -43,7 +47,7 @@ const ResultsTable = ({ scorecards, numHoles }) => {
     prepareRow,
   } = tableInstance;
 
-  return (
+  return data.length > 0 ? (
     <table
       {...getTableProps()}
       className="min-w-full divide-y divide-gray-200 bg-white shadow sm:rounded-md"
@@ -114,6 +118,8 @@ const ResultsTable = ({ scorecards, numHoles }) => {
         }
       </tbody>
     </table>
+  ) : (
+    <Info message="There are currently no results available." />
   );
 };
 

@@ -7,7 +7,7 @@ import ManageEvent from "../../pages/authenticated/ManageEvent";
 const ManageRoutes = () => {
   return (
     <Switch>
-      <Route path="/manage/:leagueId/events/:eventId" exact>
+      <Route path="/manage/:leagueId/events/:eventId">
         <ManageEvent />
       </Route>
       <Route path="/manage/:leagueId">
