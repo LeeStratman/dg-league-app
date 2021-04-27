@@ -11,6 +11,7 @@ import SubHeader from "./SubHeader";
 const actions = [
   {
     title: "Create a Scorecard",
+    description: "Quickly create a scorecard for an event.",
     href: "/create-scorecard",
     icon: PlusCircleIcon,
     iconForeground: "text-teal-700",
@@ -18,6 +19,7 @@ const actions = [
   },
   {
     title: "Find a Course",
+    description: "Looking for a course? Try searching...",
     href: "/courses",
     icon: SearchIcon,
     iconForeground: "text-purple-700",
@@ -25,6 +27,7 @@ const actions = [
   },
   {
     title: "Join a League",
+    description: "Find a league to play in!",
     href: "/leagues",
     icon: UserAddIcon,
     iconForeground: "text-light-blue-700",
@@ -32,6 +35,8 @@ const actions = [
   },
   {
     title: "Manage a League",
+    description:
+      "Want to start your own league?  If so, click here to get started!",
     href: "/manage",
     icon: ClipboardIcon,
     iconForeground: "text-yellow-700",
@@ -82,11 +87,7 @@ const Actions = () => {
                   {action.title}
                 </Link>
               </h3>
-              <p className="mt-2 text-sm text-gray-500">
-                Doloribus dolores nostrum quia qui natus officia quod et
-                dolorem. Sit repellendus qui ut at blanditiis et quo et
-                molestiae.
-              </p>
+              <p className="mt-2 text-sm text-gray-500">{action.description}</p>
             </div>
             <span
               className="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400"
