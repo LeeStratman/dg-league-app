@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import SubHeader from "../SubHeader";
 import EventDropdown from "./EventDropdown";
 import ServerContent from "../content/ServerContent";
+import Info from "../alerts/Info";
 
 const CreateScorecardForm = () => {
   const [event, setEvent] = useState("");
@@ -15,7 +16,7 @@ const CreateScorecardForm = () => {
     <Redirect
       to={`/my-leagues/${event.leagueId}/events/${event._id}/scorecards/${createScorecard.data.data._id}`}
     />
-  ) : (
+  ) : user.data?.todayEvents.length > 0 ? (
     <form
       onSubmit={(e) => {
         e.preventDefault();
@@ -47,7 +48,7 @@ const CreateScorecardForm = () => {
                   <EventDropdown
                     selected={event}
                     setSelected={setEvent}
-                    options={user.data?.upcomingEvents}
+                    options={user.data?.todayEvents}
                   />
                 </ServerContent>
               </div>
@@ -67,6 +68,8 @@ const CreateScorecardForm = () => {
         </div>
       </div>
     </form>
+  ) : (
+    <Info message="You don't have any events today to submit a scorecard." />
   );
 };
 
