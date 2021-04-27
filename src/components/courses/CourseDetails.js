@@ -2,6 +2,7 @@ import React from "react";
 
 const CourseDetails = ({ course }) => {
   const courseInfo = course[0];
+
   return (
     <div className="mt-5 border-t border-gray-200">
       <dl className="sm:divide-y sm:divide-gray-200">

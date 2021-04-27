@@ -7,7 +7,9 @@ const MyLeagueCourses = ({ league }) => {
   return (
     <SubContent>
       <SubHeader title="Courses" />
-      <CourseTable courses={league.courses} />
+      <div className="mt-4">
+        <CourseTable courses={league.courses} />
+      </div>
     </SubContent>
   );
 };

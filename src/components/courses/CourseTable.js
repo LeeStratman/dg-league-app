@@ -47,7 +47,7 @@ const CourseTable = ({ courses }) => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <Link
-                          to={`/courses/${course._id}`}
+                          to={`/courses/${course.sourceId}`}
                           className="text-primary hover:text-primary-400"
                         >
                           View

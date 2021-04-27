@@ -7,7 +7,6 @@ import CourseDetails from "../../components/courses/CourseDetails";
 const SingleCourse = () => {
   const { courseId } = useParams();
   const course = useCourse(courseId);
-  console.log(course);
 
   return (
     <ServerContent content={course}>
