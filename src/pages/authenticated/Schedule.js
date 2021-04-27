@@ -13,9 +13,19 @@ const Schedule = () => {
     <>
       <Content title="Schedule">
         <SubContent>
-          <SubHeader title="Upcoming Events" />
           <ServerContent content={user}>
-            <EventScheduleTable events={user.data?.upcomingEvents} />
+            <div className="mb-8">
+              <SubHeader title="Today's Events" />
+              <EventScheduleTable events={user.data?.todayEvents} />
+            </div>
+            <div className="mb-8">
+              <SubHeader title="Upcoming Events" />
+              <EventScheduleTable events={user.data?.upcomingEvents} />
+            </div>
+            <div className="mb-8">
+              <SubHeader title="Recent Events" />
+              <EventScheduleTable events={user.data?.recentEvents} />
+            </div>
           </ServerContent>
         </SubContent>
       </Content>
