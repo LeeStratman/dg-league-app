@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from "react";
 import useUpdateScorecard from "../../hooks/mutations/useUpdateScorecard";
+import useCompleteScorecard from "../../hooks/mutations/useCompleteScorecard";
 
 function scoreReducer(state, payload) {
   const { value, player, hole } = payload;
@@ -16,6 +17,10 @@ function scoreReducer(state, payload) {
 
 const ScorecardForm = ({ scorecard }) => {
   const updateScorecard = useUpdateScorecard();
+  const completeScorecard = useCompleteScorecard();
+  const [completed, setCompleted] = useState(
+    () => scorecard.status === "complete"
+  );
   const [scores, setScores] = useReducer(scoreReducer, scorecard.scores);
   const [holes, setHoles] = useState(
     new Array(scorecard.event.layout.numHoles).fill(0)
@@ -25,6 +30,27 @@ const ScorecardForm = ({ scorecard }) => {
     const score = scorecard.scores.find((score) => score.player === playerId);
 
     return score.holes ? score.holes[hole - 1] : 3;
+  }
+
+  function renderScore(playerId, hole) {
+    const score = getPlayerHoleScore(playerId, hole);
+    return completed ? (
+      score
+    ) : (
+      <input
+        onChange={(e) =>
+          setScores({
+            hole: hole - 1,
+            value: e.target.value,
+            player: playerId,
+          })
+        }
+        value={score}
+        type="number"
+        className="input_basic px-1 py-1"
+        size="2"
+      />
+    );
   }
 
   function getPlayerTotalScore(playerId) {
@@ -63,7 +89,7 @@ const ScorecardForm = ({ scorecard }) => {
               <tr>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
                 >
                   Player
                 </th>
@@ -71,14 +97,14 @@ const ScorecardForm = ({ scorecard }) => {
                   <th
                     key={index}
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
                   >
                     {index + 1}
                   </th>
                 ))}
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
                 >
                   Total
                 </th>
@@ -87,22 +113,10 @@ const ScorecardForm = ({ scorecard }) => {
             <tbody>
               {scorecard.players.map((player) => (
                 <tr key={player._id}>
-                  <td>{`${player.firstName} ${player.lastName}`}</td>
+                  <td className="text-center">{`${player.firstName} ${player.lastName}`}</td>
                   {holes.map((hole, index) => (
-                    <td key={index}>
-                      <input
-                        onChange={(e) =>
-                          setScores({
-                            hole: index,
-                            value: e.target.value,
-                            player: player._id,
-                          })
-                        }
-                        value={getPlayerHoleScore(player._id, index + 1)}
-                        type="number"
-                        className="input_basic px-1 py-1"
-                        size="2"
-                      />
+                    <td key={index} className="text-center">
+                      {renderScore(player._id, index + 1)}
                     </td>
                   ))}
                   <td className="text-center whitespace-nowrap text-sm font-medium text-gray-900">
@@ -114,6 +128,29 @@ const ScorecardForm = ({ scorecard }) => {
           </table>
         </div>
         <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              completeScorecard.mutate({
+                eventId: scorecard.event._id,
+                scorecardId: scorecard._id,
+              });
+              setCompleted(true);
+            }}
+            disabled={completed}
+            className="btn_primary mx-4"
+          >
+            {completeScorecard.isLoading
+              ? "Saving..."
+              : completeScorecard.isError
+              ? "Error!"
+              : completeScorecard.isSuccess
+              ? "Completed!"
+              : completeScorecard.isIdle
+              ? "Complete"
+              : "Complete"}
+          </button>
+
           <button type="submit" className="btn_primary">
             {updateScorecard.isLoading
               ? "Saving..."
