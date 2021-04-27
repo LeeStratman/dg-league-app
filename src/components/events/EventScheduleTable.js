@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { displayDate } from "../../utils/date";
 import Info from "../alerts/Info";
+import { scorecardStatus, scorecardAction } from "../../utils/user";
 
-const EventScheduleTable = ({ events = [] }) => {
+const EventScheduleTable = ({ events = [], userId }) => {
   return (
     <>
       <div className="mt-4 flex flex-col">
@@ -24,6 +25,12 @@ const EventScheduleTable = ({ events = [] }) => {
                         scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
+                        League
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
                         Course
                       </th>
                       <th
@@ -31,6 +38,18 @@ const EventScheduleTable = ({ events = [] }) => {
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
                         Date
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        My Scorecard
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Action
                       </th>
                       <th scope="col" className="relative px-6 py-3">
                         <span className="sr-only">View</span>
@@ -49,12 +68,21 @@ const EventScheduleTable = ({ events = [] }) => {
                           {event.name}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {event.leagueId.name}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           {event.layout?.course?.name
                             ? event.layout.course.name
                             : ""}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {displayDate(event.date)}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {scorecardStatus(event, userId)}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {scorecardAction(event, userId)}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <Link
