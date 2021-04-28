@@ -11,7 +11,7 @@ const MyLeagueResults = ({ leagueId }) => {
 
   return (
     <SubContent>
-      <SubHeader title="Results" />
+      <SubHeader title="League Results" />
       <ServerContent content={events}>
         <LeagueResultsTable events={events.data} />
       </ServerContent>
