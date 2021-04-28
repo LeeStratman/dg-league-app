@@ -94,7 +94,7 @@ const EventScheduleTable = ({ events = [] }) => {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <Link
-                              to={`/my-leagues/${event.leagueId}/events/${event._id}`}
+                              to={`/my-leagues/${event.leagueId._id}/events/${event._id}`}
                               className="text-primary hover:text-primary-400"
                             >
                               View Event
