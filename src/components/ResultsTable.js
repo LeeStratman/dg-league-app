@@ -2,13 +2,15 @@ import React from "react";
 import { useTable, useSortBy } from "react-table";
 import Info from "./alerts/Info";
 
-const ResultsTable = ({ scorecards, numHoles }) => {
+const ResultsTable = ({ scorecards, numHoles, results }) => {
   const data = React.useMemo(() => {
     let scoreData = [];
+
     scorecards.forEach((card) => {
       if (card.status === "pending") {
         return;
       }
+
       const scores = card.scores.map((score) => {
         let total = 0;
         const holes = score.holes.reduce((acc, hole, index) => {
@@ -16,17 +18,54 @@ const ResultsTable = ({ scorecards, numHoles }) => {
           return { ...acc, [`hole-${index}`]: hole };
         }, {});
 
+        let points = "-";
+
+        const pointResult = results.find(
+          (result) => result.player._id === score.player._id
+        );
+
+        if (pointResult) {
+          points = pointResult.points;
+        }
+
         return {
           player: `${score.player.firstName} ${score.player.lastName}`,
           ...holes,
           total,
+          points,
         };
       });
+
       scoreData = scoreData.concat(scores);
     });
 
-    return scoreData;
-  }, [scorecards]);
+    const sortResults = (results) => {
+      if (results.length < 2) {
+        return results;
+      }
+
+      const middle = Math.floor(results.length / 2);
+      const left = results.slice(0, middle);
+      const right = results.slice(middle);
+      return mergeResults(sortResults(left), sortResults(right));
+    };
+
+    const mergeResults = (left, right) => {
+      const sorted = [];
+      while (left.length && right.length) {
+        if (left[0].total <= right[0].total) {
+          sorted.push(left.shift());
+        } else {
+          sorted.push(right.shift());
+        }
+      }
+
+      const results = [...sorted, ...left, ...right];
+      return results;
+    };
+
+    return sortResults(scoreData);
+  }, [scorecards, results]);
 
   const columns = React.useMemo(() => {
     let columnData = [{ Header: "Player", accessor: "player" }];
@@ -34,6 +73,7 @@ const ResultsTable = ({ scorecards, numHoles }) => {
       columnData.push({ Header: `${i + 1}`, accessor: `hole-${i}` });
     }
     columnData.push({ Header: "Total", accessor: "total" });
+    columnData.push({ Header: "Points", accessor: "points" });
     return columnData;
   }, [numHoles]);
 
@@ -67,17 +107,46 @@ const ResultsTable = ({ scorecards, numHoles }) => {
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    {
-                      // Render the header
-                      column.render("Header")
-                    }
-                    <span>
-                      {column.isSorted
-                        ? column.isSortedDesc
-                          ? " 🔽"
-                          : " 🔼"
-                        : ""}
-                    </span>
+                    <div className="flex">
+                      <span className="inline">{column.render("Header")}</span>
+                      <span className="inline">
+                        {column.isSorted ? (
+                          column.isSortedDesc ? (
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17 13l-5 5m0 0l-5-5m5 5V6"
+                              />
+                            </svg>
+                          ) : (
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M7 11l5-5m0 0l5 5m-5-5v12"
+                              />
+                            </svg>
+                          )
+                        ) : (
+                          ""
+                        )}
+                      </span>
+                    </div>
                   </th>
                 ))
               }
@@ -85,37 +154,27 @@ const ResultsTable = ({ scorecards, numHoles }) => {
           ))
         }
       </thead>
-      {/* Apply the table body props */}
       <tbody {...getTableBodyProps()}>
-        {
-          // Loop over the table rows
-          rows.map((row) => {
-            // Prepare the row for display
-            prepareRow(row);
-            return (
-              // Apply the row props
-              <tr {...row.getRowProps()}>
-                {
-                  // Loop over the rows cells
-                  row.cells.map((cell) => {
-                    // Apply the cell props
-                    return (
-                      <td
-                        {...cell.getCellProps()}
-                        className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                      >
-                        {
-                          // Render the cell contents
-                          cell.render("Cell")
-                        }
-                      </td>
-                    );
-                  })
-                }
-              </tr>
-            );
-          })
-        }
+        {rows.map((row, rowIdx) => {
+          prepareRow(row);
+          return (
+            <tr
+              {...row.getRowProps()}
+              className={rowIdx % 2 === 0 ? "bg-white" : "bg-gray-50"}
+            >
+              {row.cells.map((cell) => {
+                return (
+                  <td
+                    {...cell.getCellProps()}
+                    className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                  >
+                    {cell.render("Cell")}
+                  </td>
+                );
+              })}
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   ) : (

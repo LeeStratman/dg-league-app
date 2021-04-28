@@ -7,6 +7,7 @@ const MyEventResults = ({ event }) => {
     <ResultsTable
       scorecards={event.scorecards}
       numHoles={event.layout.numHoles}
+      results={event.results}
     />
   );
 };
