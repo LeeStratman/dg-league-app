@@ -2,10 +2,8 @@ import React from "react";
 
 const SubContent = ({ children }) => {
   return (
-    <div className="mt-4 bg-white mx-auto sm:px-6 lg:px-8 shadow sm:rounded-md">
-      <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
-        {children}
-      </div>
+    <div className="mt-4 mx-auto lg:px-8  sm:rounded-md">
+      <div className="px-4 py-5">{children}</div>
     </div>
   );
 };
