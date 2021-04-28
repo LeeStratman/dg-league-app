@@ -41,7 +41,7 @@ const CreateScorecardForm = () => {
                 htmlFor="events"
                 className="block text-sm font-medium text-gray-700"
               >
-                Choose an Upcoming Event
+                Choose Event
               </label>
               <div className="mt-1 rounded-md shadow-sm flex">
                 <ServerContent content={user}>
