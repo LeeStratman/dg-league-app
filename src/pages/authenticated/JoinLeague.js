@@ -16,7 +16,7 @@ const JoinLeague = () => {
       <ServerContent content={league}>
         <>
           <div className="flex items-center justify-between flex-wrap sm:flex-nowrap">
-            <SubHeader title={league.data.name} />
+            <SubHeader title={league.data?.name} />
             <JoinButton leagueId={leagueId} />
           </div>
           <LeagueDetails league={league.data} />
