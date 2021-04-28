@@ -7,7 +7,6 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   CalendarIcon,
-  LocationMarkerIcon,
   HomeIcon,
   UserGroupIcon,
   XIcon,
@@ -34,12 +33,6 @@ const Sidebar = ({ logout, sidebarOpen, setSidebarOpen }) => {
       href: "/leagues",
       icon: UserGroupIcon,
       current: pathname === "/leagues" ? true : false,
-    },
-    {
-      name: "Search Courses",
-      href: "/courses",
-      icon: LocationMarkerIcon,
-      current: pathname === "/courses" ? true : false,
     },
     {
       name: "Schedule",
