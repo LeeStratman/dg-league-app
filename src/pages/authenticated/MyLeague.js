@@ -37,6 +37,14 @@ const MyLeague = () => {
       current:
         location.pathname === `/my-leagues/${leagueId}/events` ? true : false,
     },
+
+    {
+      name: "Results",
+      href: `/my-leagues/${leagueId}/results`,
+      icon: CalendarIcon,
+      current:
+        location.pathname === `/my-leagues/${leagueId}/results` ? true : false,
+    },
   ];
 
   return (

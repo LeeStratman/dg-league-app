@@ -1,21 +1,22 @@
 import React from "react";
+
 import useLeagueEvents from "../../hooks/queries/useLeagueEvents";
 import SubContent from "../../components/content/SubContent";
 import SubHeader from "../../components/SubHeader";
 import ServerContent from "../../components/content/ServerContent";
-import EventScheduleTable from "../../components/events/EventScheduleTable";
+import LeagueResultsTable from "../../components/events/LeagueResultsTable";
 
-const MyLeagueEvents = ({ leagueId }) => {
+const MyLeagueResults = ({ leagueId }) => {
   const events = useLeagueEvents(leagueId);
 
   return (
     <SubContent>
-      <SubHeader title="Events" />
+      <SubHeader title="Results" />
       <ServerContent content={events}>
-        <EventScheduleTable events={events.data} />
+        <LeagueResultsTable events={events.data} />
       </ServerContent>
     </SubContent>
   );
 };
 
-export default MyLeagueEvents;
+export default MyLeagueResults;
