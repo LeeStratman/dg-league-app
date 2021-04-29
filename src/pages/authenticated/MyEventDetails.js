@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import SubContent from "../../components/content/SubContent";
 import SubHeader from "../../components/SubHeader";
 import { displayDate } from "../../utils/date";
@@ -18,13 +19,24 @@ const MyEventDetails = ({ event }) => {
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
             <dt className="text-sm font-medium text-gray-500">Description</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {event.description}
+              {event.description ? event.description : "NA"}
             </dd>
           </div>
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-            <dt className="text-sm font-medium text-gray-500">Layout</dt>
+            <dt className="text-sm font-medium text-gray-500">Course</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {`${event.layout.description}`}
+              <Link
+                className="color-primary underline"
+                to={`/courses/${event.layout.course.sourceId}`}
+              >{`${event.layout.course.name}`}</Link>
+            </dd>
+          </div>
+          <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <dt className="text-sm font-medium text-gray-500">
+              Layout Instructions
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {`${event.layout.description ? event.layout.description : "NA"}`}
             </dd>
           </div>
         </dl>
