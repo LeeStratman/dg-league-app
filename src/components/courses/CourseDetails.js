@@ -9,7 +9,10 @@ const CourseDetails = ({ course }) => {
         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
           <dt className="text-sm font-medium text-gray-500">Location</dt>
           <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            {`${courseInfo.city}, ${courseInfo.state} ${
+            <p>{`${courseInfo.street_addr ? courseInfo.street_addr : ""}`}</p>
+            {`${courseInfo.state ? courseInfo.city : ""}, ${
+              courseInfo.state ? courseInfo.state : ""
+            } ${courseInfo.zipcode ? courseInfo.zipcode : ""}${
               courseInfo.zip ? courseInfo.zip : ""
             }`}
           </dd>
@@ -21,6 +24,12 @@ const CourseDetails = ({ course }) => {
           </dd>
         </div>
         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+          <dt className="text-sm font-medium text-gray-500">Pay to Play</dt>
+          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            {courseInfo.paytoplay === "0" ? "No" : "True"}
+          </dd>
+        </div>
+        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
           <dt className="text-sm font-medium text-gray-500">Reviews</dt>
           <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
             <a
@@ -29,7 +38,7 @@ const CourseDetails = ({ course }) => {
               href={`${courseInfo.dgcr_url}`}
               rel="noreferrer"
             >
-              Reviews
+              More info at dgcoursereview.com
             </a>
           </dd>
         </div>
