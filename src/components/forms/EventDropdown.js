@@ -64,8 +64,10 @@ const EventDropdown = ({
                               selected ? "font-semibold" : "font-normal"
                             }
                           >
-                            {option.name}
+                            <span class="block">{option.leagueId.name}</span>
+                            <span>{option.name}</span>
                           </p>
+
                           {selected ? (
                             <span
                               className={
