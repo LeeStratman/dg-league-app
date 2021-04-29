@@ -30,3 +30,13 @@ export const prepareDate = (dateString) => {
 
   return new Date(year, month, day);
 };
+
+export const isToday = (dateString) => {
+  let today = new Date();
+  let date = new Date(dateString);
+  return (
+    date.getDate() === today.getDate() &&
+    date.getMonth() === today.getMonth() &&
+    date.getFullYear() === today.getFullYear()
+  );
+};
