@@ -14,7 +14,7 @@ const CreateScorecardForm = () => {
 
   return createScorecard.isSuccess ? (
     <Redirect
-      to={`/my-leagues/${event.leagueId}/events/${event._id}/scorecards/${createScorecard.data.data._id}`}
+      to={`/my-leagues/${event.leagueId._id}/events/${event._id}/scorecards/${createScorecard.data.data._id}`}
     />
   ) : user.data?.todayEvents.length > 0 ? (
     <form
