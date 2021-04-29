@@ -1,14 +1,17 @@
 import React from "react";
 import ResultsTable from "../../components/ResultsTable";
+import ScoringInfoModal from "../../components/ScoringInfoModal";
 
-// TODO: Eventually only show completed scorecards.
 const MyEventResults = ({ event }) => {
   return (
-    <ResultsTable
-      scorecards={event.scorecards}
-      numHoles={event.layout.numHoles}
-      results={event.results}
-    />
+    <>
+      <ScoringInfoModal />
+      <ResultsTable
+        scorecards={event.scorecards}
+        numHoles={event.layout.numHoles}
+        results={event.results}
+      />
+    </>
   );
 };
 
