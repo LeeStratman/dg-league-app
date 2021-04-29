@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from "react";
 import useUpdateScorecard from "../../hooks/mutations/useUpdateScorecard";
 import useCompleteScorecard from "../../hooks/mutations/useCompleteScorecard";
+import { Link } from "react-router-dom";
 
 function scoreReducer(state, payload) {
   const { value, player, hole } = payload;
@@ -30,6 +31,19 @@ const ScorecardForm = ({ scorecard }) => {
     const score = scorecard.scores.find((score) => score.player === playerId);
 
     return score.holes ? score.holes[hole - 1] : 3;
+  }
+
+  function isScorecardComplete() {
+    let complete = true;
+
+    scores.forEach((score) => {
+      score.holes.forEach((hole) => {
+        if (Number(hole) <= 0) {
+          complete = false;
+        }
+      });
+    });
+    return complete;
   }
 
   function renderScore(playerId, hole) {
@@ -77,11 +91,28 @@ const ScorecardForm = ({ scorecard }) => {
       <div className="shadow sm:rounded-md sm:overflow-hidden">
         <div className="bg-white py-6 px-4 space-y-6 sm:p-6">
           <div>
-            <h3 className="text-lg leading-6 font-medium text-gray-900">
-              {`Scorecard - ${scorecard.event.name}`}
-            </h3>
-            <p className="mt-1 text-sm text-gray-500">{`${scorecard.event.layout.course.name} - ${scorecard.event.layout.description}`}</p>
-            <p className="mt-1 text-sm text-gray-500">{`${scorecard.event.layout.numHoles}`}</p>
+            <div className="flex justify-between">
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+                {`Scorecard - ${scorecard.event.name}`}
+              </h3>
+              <Link
+                className="btn_primary"
+                to={`/my-leagues/${scorecard.event.leagueId}/events/${scorecard.event._id}/results`}
+              >
+                View Event Results
+              </Link>
+            </div>
+            <p className="mt-1 text-sm text-gray-500">
+              Course: {`${scorecard.event.layout.course.name}`}
+            </p>
+            <p className="mt-1 text-sm text-gray-500">
+              Holes: {`${scorecard.event.layout.numHoles}`}
+            </p>
+            {scorecard.event.layout.description && (
+              <p className="mt-1 text-sm text-gray-500">
+                Layout Notes: {`${scorecard.event.layout.description}`}
+              </p>
+            )}
           </div>
 
           <table className="min-w-full divide-y divide-gray-200">
@@ -128,29 +159,30 @@ const ScorecardForm = ({ scorecard }) => {
           </table>
         </div>
         <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              completeScorecard.mutate({
-                eventId: scorecard.event._id,
-                scorecardId: scorecard._id,
-              });
-              setCompleted(true);
-            }}
-            disabled={completed}
-            className="btn_primary mx-4"
-          >
-            {completeScorecard.isLoading
-              ? "Saving..."
-              : completeScorecard.isError
-              ? "Error!"
-              : completeScorecard.isSuccess
-              ? "Completed!"
-              : completeScorecard.isIdle
-              ? "Complete"
-              : "Complete"}
-          </button>
-
+          {isScorecardComplete() && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                completeScorecard.mutate({
+                  eventId: scorecard.event._id,
+                  scorecardId: scorecard._id,
+                });
+                setCompleted(true);
+              }}
+              disabled={completed}
+              className="btn_primary mx-4"
+            >
+              {completeScorecard.isLoading
+                ? "Saving..."
+                : completeScorecard.isError
+                ? "Error!"
+                : completeScorecard.isSuccess
+                ? "Submitted!"
+                : completeScorecard.isIdle
+                ? "Submit"
+                : "Submit"}
+            </button>
+          )}
           <button type="submit" className="btn_primary">
             {updateScorecard.isLoading
               ? "Saving..."
