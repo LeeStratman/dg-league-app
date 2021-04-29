@@ -65,7 +65,7 @@ const Actions = () => {
               actionIdx === actions.length - 1
                 ? "rounded-bl-lg rounded-br-lg sm:rounded-bl-none"
                 : "",
-              "relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
+              "relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-400"
             )}
           >
             <div>
