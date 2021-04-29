@@ -7,7 +7,9 @@ const LeagueDetails = ({ league }) => {
         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
           <dt className="text-sm font-medium text-gray-500">Location</dt>
           <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            {`${league.city}, ${league.state} ${league.zip ? league.zip : ""}`}
+            {`${league.city ? league.city : ""}, ${
+              league.state ? league.state : ""
+            } ${league.zip ? league.zip : ""}`}
           </dd>
         </div>
         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">

@@ -17,7 +17,11 @@ const CourseItem = ({ course }) => {
             <p className="text-sm font-medium text-gray-900">{course.name}</p>
             <CourseRating rating={course.rating} />
           </div>
-          <p className="text-sm text-gray-500 truncate">{`${course.city}, ${course.state} ${course.zipcode}`}</p>
+          <p className="text-sm text-gray-500 truncate">{`${
+            course.city ? course.city : ""
+          }, ${course.state ? course.state : ""} ${
+            course.zipcode ? course.zipcode : ""
+          }`}</p>
           <p className="text-sm text-gray-500 truncate">{`Holes: ${course.holes}`}</p>
         </Link>
       </div>

@@ -41,9 +41,9 @@ const CourseTable = ({ courses }) => {
                         {course.name}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {`${course.city}, ${course.state} ${
-                          course.zip ? course.zip : ""
-                        }`}
+                        {`${course.city ? course.city : ""}, ${
+                          course.state ? course.state : ""
+                        } ${course.zip ? course.zip : ""}`}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <Link

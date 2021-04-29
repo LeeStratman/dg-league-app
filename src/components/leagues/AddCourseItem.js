@@ -34,7 +34,11 @@ const AddCourseItem = ({ course }) => {
             </p>
             <CourseRating rating={course.rating} />
           </div>
-          <p className="text-sm text-gray-500 text-left truncate">{`${course.city}, ${course.state} ${course.zipcode}`}</p>
+          <p className="text-sm text-gray-500 text-left truncate">{`${
+            course.city ? course.city : ""
+          }, ${course.state ? course.state : ""} ${
+            course.zipcode ? course.zipcode : ""
+          }`}</p>
           <p className="text-sm text-gray-500 text-left truncate">{`Holes: ${course.holes}`}</p>
           <p className="btn_primary text-left inline-block">
             {addCourse.isLoading

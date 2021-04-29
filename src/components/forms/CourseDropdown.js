@@ -84,7 +84,9 @@ const CourseDropdown = ({
                             "mt-2"
                           )}
                         >
-                          {`${option.city}, ${option.state}`}
+                          {`${option.city ? option.city + "," : ""} ${
+                            option.state ? option.state : ""
+                          }`}
                         </p>
                       </div>
                     )}

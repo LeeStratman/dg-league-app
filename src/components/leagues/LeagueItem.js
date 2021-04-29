@@ -10,9 +10,11 @@ const LeagueItem = ({ league }) => {
         <Link to={`/leagues/${league._id}`} className="focus:outline-none">
           <span className="absolute inset-0" aria-hidden="true" />
           <p className="text-sm font-medium text-gray-900">{league.name}</p>
-          <p className="text-sm text-gray-500 truncate">{`${league.city}, ${
-            league.state
-          } ${league.zipcode ? league.zipcode : ""}`}</p>
+          <p className="text-sm text-gray-500 truncate">{`${
+            league.city ? league.city : ""
+          }, ${league.state ? league.state : ""} ${
+            league.zipcode ? league.zipcode : ""
+          }`}</p>
         </Link>
       </div>
     </div>
